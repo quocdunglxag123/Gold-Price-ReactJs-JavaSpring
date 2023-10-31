@@ -1,0 +1,15 @@
+.each-slide-effect > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+  }
+  
+.imageSlide {
+    padding: 20%;
+    background: #efefef;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100% !important;
+  }
+

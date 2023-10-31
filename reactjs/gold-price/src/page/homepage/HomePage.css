@@ -1,0 +1,17 @@
+.body{
+    background-color: rgb(88,2,2);
+    color: yellow;
+    position: absolute;
+    min-height: 100vh !important;
+    width: 100vw !important;
+    padding-left: 2%  !important;
+    padding-right: 2%  !important;
+    padding-top: 3% !important;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+

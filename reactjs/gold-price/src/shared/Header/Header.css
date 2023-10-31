@@ -1,0 +1,18 @@
+.header-container{
+    background-color: rgb(126,3,8);
+    padding-left: 1%  !important;
+    padding-right: 1%  !important;
+    position: fixed !important;    
+    z-index: 1 !important;
+    width: 100vw;
+}
+.textLayout{
+    color: yellow !important;
+}
+
+.custom-dropdown-menu {
+    background: rgb(126,3,8) !important;
+    border: 0  !important;
+    box-shadow: none  !important;
+    text-transform: none !important;
+}
