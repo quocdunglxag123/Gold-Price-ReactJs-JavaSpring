@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../../ReactJs/react-app"
+		},
+		{
+			"path": "../../../ReactJs/webecommerce/ecommerce-front"
 		}
 	],
 	"settings": {}

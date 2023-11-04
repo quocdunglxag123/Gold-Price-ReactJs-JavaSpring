@@ -1,50 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
-import ProductCard from "../slick-product-carousel/SlickProductCarousel";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./ProductSlider.css";
-class ProductSlider extends Component {
-  constructor() {
-    super();
-    this.state = {
-      slides: [
-        {
-          img: "https://dummyimage.com/600x400/000/7CFC00"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/ccccc"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/dddddd"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/fff"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/B22222"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/7CFC00"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/ccccc"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/dddddd"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/B22222"
-        },
-        {
-          img: "https://dummyimage.com/600x400/000/7CFC00"
-        }
-      ]
-    };
-  }
-  render() {
-    var settings = {
+import SlickProductCarousel from "../slick-product-carousel/SlickProductCarousel";
+const ProductSlider = props => {
+  const data = {titleSlide: props.slideInfo[0],
+              urlImageArr: props.slideInfo[1]
+  };
+  var settings = {
       dots: false,
       infinite: false,
       speed: 500,
@@ -80,19 +45,19 @@ class ProductSlider extends Component {
     };
     return (
       <div>
-        <h2> Responsive Product Carousel</h2>
+        <br />
+        <h2 className="center"> {data.titleSlide}</h2>
         <Slider {...settings}>
-          {this.state.slides.map((slide, index) => {
+          {data.urlImageArr.map((urlImageArr, index) => {
             return (
               <div key={index}>
-                <ProductCard imgSrc={slide.img} />
+                <SlickProductCarousel imgSrc={urlImageArr.img} />
               </div>
             );
           })}
         </Slider>
       </div>
-    );
-  }
+  );
 }
 
 export default ProductSlider;

@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './page/login/Login';
 import Register from './page/register/Register';
 import HomePage from './page/homepage/HomePage';
-import Header from './shared/Header/Header';
+import Header from './component/Header/Header';
 //Css Page
 import './App.css';
 

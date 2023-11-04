@@ -29,7 +29,6 @@
   .slick-prev {
     width: 50px;
     left: 0;
-    top: 20%;
     position: absolute;
     height: 50px;
     background: tomato;
@@ -41,7 +40,6 @@
   .slick-next {
     width: 50px;
     right: 0;
-    top: 20%;
     position: absolute;
     height: 50px;
     background: tomato;

@@ -3,7 +3,7 @@
     padding-left: 1%  !important;
     padding-right: 1%  !important;
     position: fixed !important;    
-    z-index: 1 !important;
+    z-index: 3 !important;
     width: 100vw;
 }
 .textLayout{

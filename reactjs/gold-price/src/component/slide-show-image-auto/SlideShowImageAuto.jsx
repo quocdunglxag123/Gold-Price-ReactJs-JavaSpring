@@ -1,8 +1,8 @@
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import './SlideShowImage.css'
-const SlideShowImage = () => {
+import './SlideShowImageAuto.css'
+const SlideShowImageAuto = () => {
     const images = [
         "/image/ring9999.png",
         "/image/sjc.png",
@@ -27,4 +27,4 @@ const SlideShowImage = () => {
     );
 };
 
-export default SlideShowImage;
+export default SlideShowImageAuto;

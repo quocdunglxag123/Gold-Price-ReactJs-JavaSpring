@@ -6,7 +6,8 @@
     width: 100vw !important;
     padding-left: 2%  !important;
     padding-right: 2%  !important;
-    padding-top: 3% !important;
+    padding-top: 5% !important;
+    z-index: 1 !important;
 }
 .center{
     display: flex;
