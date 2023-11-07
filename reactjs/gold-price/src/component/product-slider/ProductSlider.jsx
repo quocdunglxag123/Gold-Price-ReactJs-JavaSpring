@@ -7,7 +7,7 @@ import "./ProductSlider.css";
 import SlickProductCarousel from "../slick-product-carousel/SlickProductCarousel";
 const ProductSlider = props => {
   const data = {titleSlide: props.slideInfo[0],
-              urlImageArr: props.slideInfo[1]
+              productArr: props.slideInfo[1]
   };
   var settings = {
       dots: false,
@@ -48,10 +48,10 @@ const ProductSlider = props => {
         <br />
         <h2 className="center"> {data.titleSlide}</h2>
         <Slider {...settings}>
-          {data.urlImageArr.map((urlImage, index) => {
+          {data.productArr.map((product, index) => {
             return (
               <div key={index}>
-                <SlickProductCarousel imgSrc={urlImage.imageUrl} />
+                <SlickProductCarousel product={product} />
               </div>
             );
           })}
