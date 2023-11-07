@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './Login.css';
-import { loginApi } from "../../services/UserService";
+import { loginApi } from "../../services/ApiService";
 import { toast } from 'react-toastify';
 import { useNavigate, Link, Outlet  } from "react-router-dom"
 import {
@@ -16,7 +16,7 @@ import {
   from 'mdb-react-ui-kit';
 import Cookies from 'universal-cookie';
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadingLogin, setLoaingLogin] = useState(false);

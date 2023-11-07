@@ -48,10 +48,10 @@ const ProductSlider = props => {
         <br />
         <h2 className="center"> {data.titleSlide}</h2>
         <Slider {...settings}>
-          {data.urlImageArr.map((urlImageArr, index) => {
+          {data.urlImageArr.map((urlImage, index) => {
             return (
               <div key={index}>
-                <SlickProductCarousel imgSrc={urlImageArr.img} />
+                <SlickProductCarousel imgSrc={urlImage.imageUrl} />
               </div>
             );
           })}

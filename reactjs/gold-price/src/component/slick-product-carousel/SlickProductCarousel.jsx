@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import { Card, Button } from "react-bootstrap";
+import "./SlickProductCarousel.css";
 
 const SlickProductCarousel = props => {
   return (
     <Fragment>
       <Card style={{ width: "inherit" }}>
-        <Card.Img variant="top" src={props.imgSrc} />
+        <Card.Img variant="top" className="product-image" src={"/image/"+ props.imgSrc} />
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
           <Card.Text>

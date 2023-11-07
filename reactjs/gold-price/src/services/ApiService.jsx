@@ -8,4 +8,7 @@ const registerApi = (serviceCall, firstName, lastName, username, password, addre
     return axios.post("register", {serviceCall, firstName, lastName, username, password, address, phoneNumber, birthday});
 }
 
-export {loginApi, registerApi}
+const productApi = (serviceCall, productName, description, weight, purity, price, inStock, imageUrl) => {
+    return axios.post("product", {serviceCall, productName, description, weight, purity, price, inStock, imageUrl});
+}
+export {loginApi, registerApi, productApi}

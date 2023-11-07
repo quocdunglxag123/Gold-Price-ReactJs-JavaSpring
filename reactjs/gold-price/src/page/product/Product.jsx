@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import './Product.css';
 import ProductCard from "../../component/product-card/ProductCard";
 

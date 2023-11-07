@@ -4,7 +4,7 @@ import { useNavigate, Link, Outlet  } from "react-router-dom"
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
-import { registerApi } from "../../services/UserService";
+import { registerApi } from "../../services/ApiService";
 import {formatDateYYYYMMDD} from "../../shared/FormatDate";
 
 import {
@@ -21,7 +21,7 @@ import {
 }
   from 'mdb-react-ui-kit';
 
-function Register() {
+const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
