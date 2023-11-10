@@ -12,6 +12,7 @@ function Product() {
       {globalData.productInfoArr[0].productName}
       <br />
       <ProductCard />
+      <ProductCard />
     </div>
    
   );
