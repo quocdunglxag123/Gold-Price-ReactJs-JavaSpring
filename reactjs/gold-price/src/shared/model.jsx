@@ -1,18 +1,17 @@
-// import { createStore } from 'redux';
+import { createSlice } from "@reduxjs/toolkit";
 
-// const initialState = {
-//   globaldata: '',
-// };
+export const initialStateValue = "";
 
-// function rootReducer(state = initialState, action) {
-//   switch (action.type) {
-//     case 'setGlobalData':
-//       return { ...state, globaldata: action.payload };
-//     default:
-//       return state;
-//   }
-// }
+export const theStore = createSlice({
+  name: "theStore",
+  initialState: { value: initialStateValue },
+  reducers: {
+    getData: (state, action) => {
+      state.value = action.payload;
+    },
+  },
+});
 
-// const model = createStore(rootReducer);
+export const { getData } = theStore.actions;
 
-// export default model;
+export default theStore.reducer;
