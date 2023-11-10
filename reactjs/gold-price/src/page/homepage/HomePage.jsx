@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import "./HomePage.css"
 import SlideShowImageAuto from '../../component/slide-show-image-auto/SlideShowImageAuto';
 import ProductSlider from '../../component/product-slider/ProductSlider';
@@ -34,9 +34,7 @@ const HomePage = () => {
     }
   }
 
-  useEffect(() => {
-    init();
-  });
+  init();
 
   return (
     <div className="body">
