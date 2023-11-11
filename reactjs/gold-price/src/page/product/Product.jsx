@@ -9,7 +9,7 @@ function Product() {
 
   return (
     <div className="body d-flex">
-      {globalData.productInfoArr[0].productName}
+      {globalData[0].productName}
       <br />
       <ProductCard />
       <ProductCard />
