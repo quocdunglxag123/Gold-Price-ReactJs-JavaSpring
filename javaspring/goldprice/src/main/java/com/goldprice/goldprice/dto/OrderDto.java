@@ -1,16 +1,7 @@
-package com.goldprice.goldprice.entity;
+package com.goldprice.goldprice.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "Orders")
-public class OrderEntity extends BaseEntity {
-	@ManyToOne
-	@JoinColumn(name = "accountId")
-	private AccountEntity accountEntity;
+public class OrderDto extends BaseDto {
+	private AccountDto accountDto;
 
 	private double totalAmount;
 
@@ -18,24 +9,24 @@ public class OrderEntity extends BaseEntity {
 
 	private String shippingAddress;
 
-	public OrderEntity() {
+	public OrderDto() {
 		super();
 	}
 
-	public OrderEntity(AccountEntity accountEntity, double totalAmount, Boolean paymentStatus, String shippingAddress) {
+	public OrderDto(AccountDto accountDto, double totalAmount, Boolean paymentStatus, String shippingAddress) {
 		super();
-		this.accountEntity = accountEntity;
+		this.accountDto = accountDto;
 		this.totalAmount = totalAmount;
 		this.paymentStatus = paymentStatus;
 		this.shippingAddress = shippingAddress;
 	}
 
-	public AccountEntity getAccountEntity() {
-		return accountEntity;
+	public AccountDto getAccountDto() {
+		return accountDto;
 	}
 
-	public void setAccountEntity(AccountEntity accountEntity) {
-		this.accountEntity = accountEntity;
+	public void setAccountDto(AccountDto accountDto) {
+		this.accountDto = accountDto;
 	}
 
 	public double getTotalAmount() {

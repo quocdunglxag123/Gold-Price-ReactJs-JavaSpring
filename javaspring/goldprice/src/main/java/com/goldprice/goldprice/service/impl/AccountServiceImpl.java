@@ -14,6 +14,7 @@ import com.goldprice.goldprice.dto.AccountDto;
 import com.goldprice.goldprice.dto.RegisterDto;
 import com.goldprice.goldprice.dto.RoleDto;
 import com.goldprice.goldprice.entity.AccountEntity;
+import com.goldprice.goldprice.entity.OrderEntity;
 import com.goldprice.goldprice.entity.RoleEntity;
 import com.goldprice.goldprice.entity.UserInfoEntity;
 import com.goldprice.goldprice.exception.AccountException;
@@ -22,6 +23,7 @@ import com.goldprice.goldprice.mapstruct.AccountMapper;
 import com.goldprice.goldprice.mapstruct.GenerateMapper;
 import com.goldprice.goldprice.mapstruct.UserInfoMapper;
 import com.goldprice.goldprice.repository.AccountRepository;
+import com.goldprice.goldprice.repository.OrderRepository;
 import com.goldprice.goldprice.repository.RoleRepository;
 import com.goldprice.goldprice.repository.UserInfoRepository;
 import com.goldprice.goldprice.service.AccountService;
@@ -30,6 +32,9 @@ import com.goldprice.goldprice.service.RoleService;
 @Service
 public class AccountServiceImpl implements AccountService {
 
+	@Autowired
+	private OrderRepository orderRepository;
+	
 	@Autowired
 	private AccountRepository accountRepository;
 	@Autowired
@@ -41,12 +46,12 @@ public class AccountServiceImpl implements AccountService {
 	private UserInfoMapper userInfoMapper;
 
 	@Autowired
+	private RoleService roleService;
+	@Autowired
 	private RoleRepository roleRepository;
+	
 
 	private PasswordEncoder BCrypt = new BCryptPasswordEncoder();
-
-	@Autowired
-	private RoleService roleService;
 	@Autowired
 	private GenerateMapper generateMapper;
 
@@ -116,6 +121,10 @@ public class AccountServiceImpl implements AccountService {
 		accountRepository.save(account);
 		userInfo.setAccountEntity(account);
 		userInfoRepository.save(userInfo);
+		
+		OrderEntity orderEntity =  new OrderEntity();
+		orderEntity.setAccountEntity(account);
+		orderRepository.save(orderEntity);
 
 		return true;
 	}

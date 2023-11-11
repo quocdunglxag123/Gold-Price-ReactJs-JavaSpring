@@ -7,6 +7,9 @@ import Login from './page/login/Login';
 import Register from './page/register/Register';
 import HomePage from './page/homepage/HomePage';
 import Header from './component/Header/Header';
+import Product from './page/product/Product';
+import Order from './page/order/Order';
+
 //Css Page
 import './App.css';
 
@@ -22,7 +25,6 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Product from './page/product/Product';
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
           <Route path="homepage" element={<HomePage />}>
           </Route>
           <Route path="product" element={<Product />}>
+          </Route>
+          <Route path="order" element={<Order />}>
           </Route>
         </Route>
       </Routes>

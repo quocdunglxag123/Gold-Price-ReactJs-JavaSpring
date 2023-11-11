@@ -23,7 +23,6 @@ public interface GenerateMapper {
 	RoleEntity roleDtoToRoleEntity(RoleDto roleDto);	
 	List<RoleEntity> listRoleDtoToListRoleEntity(List<RoleDto> roleDtos);	
 	// ----------------------------Role End---------------------------
-
 	
 	// ----------------------------UserInfo Start---------------------------
 	//Entity To DTO

@@ -2,7 +2,7 @@ import React , { useState } from "react";
 import { Link, Outlet } from 'react-router-dom'
 import { Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoins } from '@fortawesome/free-solid-svg-icons'
+import { faCoins,faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import './Header.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -40,22 +40,29 @@ const Header = () => {
                         </li>
                     </ul>
                     <div className="form-inline my-2 my-lg-0 d-flex">
-                        <Dropdown>
-                            <Dropdown.Toggle className=" nav-link textLayout custom-dropdown-menu">
-                                Hello {lastName}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <Dropdown.Item href="#">
-                                    Home Page
-                                </Dropdown.Item>
-                                <Dropdown.Item href="#">
-                                    Settings
-                                </Dropdown.Item>
-                                <Dropdown.Item href="../login"  onClick={()=>handleLogout()}>
-                                    Logout
-                                </Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                    <ul className="navbar-nav me-auto">
+                        <li className="nav-item">
+                            <Link className="nav-link textLayout" to="../order"><FontAwesomeIcon icon={faCartShopping} size="xl" style={{color: "#fff700",}} /></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Dropdown>
+                                <Dropdown.Toggle className=" nav-link textLayout custom-dropdown-menu">
+                                    Hello {lastName}
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="#">
+                                        Home Page
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#">
+                                        Settings
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="../login"  onClick={()=>handleLogout()}>
+                                        Logout
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </li>
+                    </ul>
 
                     </div>
 
