@@ -1,11 +1,16 @@
 package com.goldprice.goldprice.dto;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 public class OrderDto extends BaseDto {
 	private AccountDto accountDto;
 
-	private double totalAmount;
+	private List<OrderItemDto> orderItemDtos;
 
-	private Boolean paymentStatus;
+	private BigDecimal totalAmount;
+
+	private StatusOrderDto statusOrderDto;
 
 	private String shippingAddress;
 
@@ -13,11 +18,13 @@ public class OrderDto extends BaseDto {
 		super();
 	}
 
-	public OrderDto(AccountDto accountDto, double totalAmount, Boolean paymentStatus, String shippingAddress) {
+	public OrderDto(AccountDto accountDto, List<OrderItemDto> orderItemDtos, BigDecimal totalAmount,
+			StatusOrderDto statusOrderDto, String shippingAddress) {
 		super();
 		this.accountDto = accountDto;
+		this.orderItemDtos = orderItemDtos;
 		this.totalAmount = totalAmount;
-		this.paymentStatus = paymentStatus;
+		this.statusOrderDto = statusOrderDto;
 		this.shippingAddress = shippingAddress;
 	}
 
@@ -29,20 +36,28 @@ public class OrderDto extends BaseDto {
 		this.accountDto = accountDto;
 	}
 
-	public double getTotalAmount() {
+	public List<OrderItemDto> getOrderItemDtos() {
+		return orderItemDtos;
+	}
+
+	public void setOrderItemDtos(List<OrderItemDto> orderItemDtos) {
+		this.orderItemDtos = orderItemDtos;
+	}
+
+	public BigDecimal getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(double totalAmount) {
+	public void setTotalAmount(BigDecimal totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
-	public Boolean getPaymentStatus() {
-		return paymentStatus;
+	public StatusOrderDto getStatusOrderDto() {
+		return statusOrderDto;
 	}
 
-	public void setPaymentStatus(Boolean paymentStatus) {
-		this.paymentStatus = paymentStatus;
+	public void setStatusOrderDto(StatusOrderDto statusOrderDto) {
+		this.statusOrderDto = statusOrderDto;
 	}
 
 	public String getShippingAddress() {

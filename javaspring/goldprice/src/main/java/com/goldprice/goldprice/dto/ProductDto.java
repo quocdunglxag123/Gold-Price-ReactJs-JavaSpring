@@ -1,11 +1,13 @@
 package com.goldprice.goldprice.dto;
 
+import java.math.BigDecimal;
+
 public class ProductDto extends BaseDto {
 	private String productName;
 	private String description;
 	private int weight;
 	private String purity;
-	private String price;
+	private BigDecimal price;
 	private int inStock;
 	private String imageUrl;
 
@@ -13,7 +15,7 @@ public class ProductDto extends BaseDto {
 		super();
 	}
 
-	public ProductDto(String productName, String description, int weight, String purity, String price, int inStock,
+	public ProductDto(String productName, String description, int weight, String purity, BigDecimal price, int inStock,
 			String imageUrl) {
 		super();
 		this.productName = productName;
@@ -57,11 +59,11 @@ public class ProductDto extends BaseDto {
 		this.purity = purity;
 	}
 
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

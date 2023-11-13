@@ -1,8 +1,14 @@
 package com.goldprice.goldprice.entity;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -12,9 +18,13 @@ public class OrderEntity extends BaseEntity {
 	@JoinColumn(name = "accountId")
 	private AccountEntity accountEntity;
 
-	private double totalAmount;
+	@OneToMany(mappedBy = "orderEntity", cascade = CascadeType.ALL)
+	private List<OrderItemEntity> orderItemEntities;
 
-	private Boolean paymentStatus;
+	private BigDecimal totalAmount;
+
+	@OneToOne(mappedBy = "orderEntity", cascade = CascadeType.ALL)
+	private StatusOrderEntity statusOrderEntity;
 
 	private String shippingAddress;
 
@@ -22,11 +32,13 @@ public class OrderEntity extends BaseEntity {
 		super();
 	}
 
-	public OrderEntity(AccountEntity accountEntity, double totalAmount, Boolean paymentStatus, String shippingAddress) {
+	public OrderEntity(AccountEntity accountEntity, List<OrderItemEntity> orderItemEntities, BigDecimal totalAmount,
+			StatusOrderEntity statusOrderEntity, String shippingAddress) {
 		super();
 		this.accountEntity = accountEntity;
+		this.orderItemEntities = orderItemEntities;
 		this.totalAmount = totalAmount;
-		this.paymentStatus = paymentStatus;
+		this.statusOrderEntity = statusOrderEntity;
 		this.shippingAddress = shippingAddress;
 	}
 
@@ -38,20 +50,28 @@ public class OrderEntity extends BaseEntity {
 		this.accountEntity = accountEntity;
 	}
 
-	public double getTotalAmount() {
+	public List<OrderItemEntity> getOrderItemEntities() {
+		return orderItemEntities;
+	}
+
+	public void setOrderItemEntities(List<OrderItemEntity> orderItemEntities) {
+		this.orderItemEntities = orderItemEntities;
+	}
+
+	public BigDecimal getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(double totalAmount) {
+	public void setTotalAmount(BigDecimal totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
-	public Boolean getPaymentStatus() {
-		return paymentStatus;
+	public StatusOrderEntity getStatusOrderEntity() {
+		return statusOrderEntity;
 	}
 
-	public void setPaymentStatus(Boolean paymentStatus) {
-		this.paymentStatus = paymentStatus;
+	public void setStatusOrderEntity(StatusOrderEntity statusOrderEntity) {
+		this.statusOrderEntity = statusOrderEntity;
 	}
 
 	public String getShippingAddress() {

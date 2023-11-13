@@ -1,5 +1,7 @@
 package com.goldprice.goldprice.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -7,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "OrderItems")
-public class OrderItemEntity  extends BaseEntity {
+public class OrderItemEntity extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "orderId")
 	private OrderEntity orderEntity;
@@ -17,19 +19,18 @@ public class OrderItemEntity  extends BaseEntity {
 	private ProductEntity productEntity;
 
 	private int quantity;
-
-	private double subtotal;
+	private BigDecimal subTotal;
 
 	public OrderItemEntity() {
 		super();
 	}
 
-	public OrderItemEntity(OrderEntity orderEntity, ProductEntity productEntity, int quantity, double subtotal) {
+	public OrderItemEntity(OrderEntity orderEntity, ProductEntity productEntity, int quantity, BigDecimal subTotal) {
 		super();
 		this.orderEntity = orderEntity;
 		this.productEntity = productEntity;
 		this.quantity = quantity;
-		this.subtotal = subtotal;
+		this.subTotal = subTotal;
 	}
 
 	public OrderEntity getOrderEntity() {
@@ -56,12 +57,12 @@ public class OrderItemEntity  extends BaseEntity {
 		this.quantity = quantity;
 	}
 
-	public double getSubtotal() {
-		return subtotal;
+	public BigDecimal getSubTotal() {
+		return subTotal;
 	}
 
-	public void setSubtotal(double subtotal) {
-		this.subtotal = subtotal;
+	public void setSubTotal(BigDecimal subTotal) {
+		this.subTotal = subTotal;
 	}
 
 }

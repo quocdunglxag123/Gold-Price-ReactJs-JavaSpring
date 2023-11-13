@@ -44,7 +44,7 @@ const HomePage = () => {
       <div className= "slideShow pt-3">
         <SlideShowImageAuto/>
       </div>
-      {loading ? null : globalData && (
+      {loading ? null : globalData && Object.keys(globalData).length > 0 && (
         <ProductSlider slideInfo={["Product", globalData]} />
       )}
     </div>

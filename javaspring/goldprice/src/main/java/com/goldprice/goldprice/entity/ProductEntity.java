@@ -1,5 +1,7 @@
 package com.goldprice.goldprice.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -10,7 +12,7 @@ public class ProductEntity extends BaseEntity {
 	private String description;
 	private int weight;
 	private String purity;
-	private String price;
+	private BigDecimal price;
 	private int inStock;
 	private String imageUrl;
 
@@ -18,7 +20,7 @@ public class ProductEntity extends BaseEntity {
 		super();
 	}
 
-	public ProductEntity(String productName, String description, int weight, String purity, String price, int inStock,
+	public ProductEntity(String productName, String description, int weight, String purity, BigDecimal price, int inStock,
 			String imageUrl) {
 		super();
 		this.productName = productName;
@@ -62,11 +64,11 @@ public class ProductEntity extends BaseEntity {
 		this.purity = purity;
 	}
 
-	public String getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

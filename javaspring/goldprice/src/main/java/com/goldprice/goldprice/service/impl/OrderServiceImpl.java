@@ -1,13 +1,15 @@
 package com.goldprice.goldprice.service.impl;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.goldprice.goldprice.dto.AccountDto;
 import com.goldprice.goldprice.dto.OrderDto;
 import com.goldprice.goldprice.entity.OrderEntity;
+import com.goldprice.goldprice.entity.OrderItemEntity;
 import com.goldprice.goldprice.exception.OrderException;
-import com.goldprice.goldprice.mapstruct.AccountMapper;
+import com.goldprice.goldprice.mapstruct.GenerateMapper;
 import com.goldprice.goldprice.mapstruct.OrderMapper;
 import com.goldprice.goldprice.repository.OrderRepository;
 import com.goldprice.goldprice.service.OrderService;
@@ -19,8 +21,9 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepository orderRepository;
 	@Autowired
 	private OrderMapper orderMapper;
+
 	@Autowired
-	private AccountMapper accountMapper;
+	private GenerateMapper generateMapper;
 
 	/**
 	 * Get Order
@@ -32,10 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Object getOrder(OrderDto orderDto) {
 		OrderEntity orderEntity = orderRepository.findOneById(orderDto.getId());
-		AccountDto accountDto = accountMapper.accountEntityToAccountDto(orderEntity.getAccountEntity());
-		OrderDto orderDtoResponse = orderMapper.orderEntityToOrderDto(orderEntity);
-		orderDtoResponse.setAccountDto(accountDto);
-		return orderDtoResponse;
+		return orderMapper.orderEntityToOrderDto(orderEntity);
 	}
 
 	/**
@@ -63,8 +63,25 @@ public class OrderServiceImpl implements OrderService {
 	public Object updateOrder(OrderDto orderDto) {
 		OrderEntity orderEntityUpdate = orderRepository.findOneById(orderDto.getId());
 		if (orderEntityUpdate != null) {
-			// Case: Order is in database
+			if (orderDto.getStatusOrderDto() != null) {
+				orderEntityUpdate.setStatusOrderEntity(
+						generateMapper.statusOrderDtoToStatusOrderEntity(orderDto.getStatusOrderDto()));
+			}
 
+			if (orderDto.getShippingAddress() != null) {
+				orderEntityUpdate.setShippingAddress(orderDto.getShippingAddress());
+			}
+
+			// Update Total Price Base On OrderItemEntity
+			// About orderDto.getOrderItemDtos() never use in this function because not
+			// permit to update OrderItem In OrderSevice
+			BigDecimal totalPrice = new BigDecimal(0);
+			for (OrderItemEntity orderItemEntity : orderEntityUpdate.getOrderItemEntities()) {
+				BigDecimal subTotal = orderItemEntity.getSubTotal();
+				totalPrice.add(subTotal);
+			}
+			orderEntityUpdate.setTotalAmount(totalPrice);
+			orderRepository.save(orderEntityUpdate);
 			return true;
 		} else {
 			throw new OrderException("Order Not Found!");
