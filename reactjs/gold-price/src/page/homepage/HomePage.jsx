@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react"
 import "./HomePage.css"
 import SlideShowImageAuto from '../../component/slide-show-image-auto/SlideShowImageAuto';
-import ProductSlider from '../../component/product-slider/ProductSlider';
 import { productApi } from "../../services/ApiService";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +13,6 @@ const HomePage = () => {
   const [productInfo, setProductInfo] = useState("");
   const [loading, setLoading] = useState(true);
 
-  
   const init = async () => {
       let res = await productApi('getAll');
       if (res.status === '200' && res.data != null) {
@@ -34,19 +32,18 @@ const HomePage = () => {
 
   //Init When render
   useEffect(() => {
-    if (!globalData) {
+    if (!productInfo) {
       init();
     }
-  }, [globalData]);
+  }, [productInfo]);
 
   return (
     <div className="body">
       <div className= "slideShow pt-3">
-        <SlideShowImageAuto/>
+      {loading ? null : productInfo && Object.keys(productInfo).length > 0 && (
+        <SlideShowImageAuto data={productInfo} />
+        )}
       </div>
-      {loading ? null : globalData && Object.keys(globalData).length > 0 && (
-        <ProductSlider slideInfo={["Product", globalData]} />
-      )}
     </div>
   )
  }

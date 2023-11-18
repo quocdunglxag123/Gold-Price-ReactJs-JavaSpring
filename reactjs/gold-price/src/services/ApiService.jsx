@@ -11,4 +11,8 @@ const registerApi = (serviceCall, firstName, lastName, username, password, addre
 const productApi = (serviceCall, productName, description, weight, purity, price, inStock, imageUrl) => {
     return axios.post("product", {serviceCall, productName, description, weight, purity, price, inStock, imageUrl});
 }
-export {loginApi, registerApi, productApi}
+
+const goldPriceApi = () => {
+    return  axios.get('https://mihong.vn/api/v1/gold/prices/current');
+}
+export {loginApi, registerApi, productApi, goldPriceApi}

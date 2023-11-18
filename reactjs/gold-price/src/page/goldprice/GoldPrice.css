@@ -1,0 +1,11 @@
+.cellPrice {
+  background-color: rgb(101,2,5);
+}
+.centerRow{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-start;
+}
+
+

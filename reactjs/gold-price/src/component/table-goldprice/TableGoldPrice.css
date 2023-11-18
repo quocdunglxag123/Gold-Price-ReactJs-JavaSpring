@@ -1,0 +1,15 @@
+.cellPrice {
+  background-color: rgb(101,2,5);
+}
+
+th{
+  padding-right: 30px;
+}
+td{
+  padding-right: 30px;
+}
+
+.selfCenter{
+  display: flex;
+  align-items: self-end;
+}

@@ -8,7 +8,7 @@ import Register from './page/register/Register';
 import HomePage from './page/homepage/HomePage';
 import Header from './component/Header/Header';
 import Product from './page/product/Product';
-import Order from './page/order/Order';
+import GoldPrice from './page/goldprice/GoldPrice';
 
 //Css Page
 import './App.css';
@@ -46,8 +46,9 @@ function App() {
           </Route>
           <Route path="product" element={<Product />}>
           </Route>
-          <Route path="order" element={<Order />}>
+          <Route path="goldprice" element={<GoldPrice />}>
           </Route>
+          
         </Route>
       </Routes>
     </BrowserRouter>

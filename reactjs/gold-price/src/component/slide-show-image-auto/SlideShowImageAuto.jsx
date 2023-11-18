@@ -2,29 +2,23 @@ import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import './SlideShowImageAuto.css'
-const SlideShowImageAuto = () => {
-    const images = [
-        "/image/ring9999.png",
-        "/image/sjc.png",
-        "/image/homepageimage1.png"
-    ];
+const SlideShowImageAuto = (props) => {
+  const slideInfo = props.data;
 
-    return (
-        <Slide>
-            <div className="each-slide-effect">
-                <div className="imageSlide" style={{ 'backgroundImage': `url(${images[0]})` }}>
-                </div>
+  return (
+    <Slide>
+      {slideInfo.map((slide, index) => {
+        // Import image using `import` statement
+        const imageUrl = require(`../../shared/image/${slide.imageUrl}`);
+        return (
+          <div key={index} className="each-slide-effect">
+            <div className="imageSlide" style={{ 'backgroundImage': `url(${imageUrl})` }}>
             </div>
-            <div className="each-slide-effect">
-                <div className="imageSlide" style={{ 'backgroundImage': `url(${images[1]})` }}>
-                </div>
-            </div>
-            <div className="each-slide-effect">
-                <div className="imageSlide" style={{ 'backgroundImage': `url(${images[2]})` }}>
-                </div>
-            </div>
-        </Slide>
-    );
+          </div>
+        );
+      })}
+    </Slide>
+  );
 };
 
 export default SlideShowImageAuto;

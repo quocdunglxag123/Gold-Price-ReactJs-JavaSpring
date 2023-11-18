@@ -9,35 +9,40 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBCardTitle,
-  MDBIcon,
+  MDBBtn
 } from "mdb-react-ui-kit";
 
 const ProductCard = props => {
+  const product = props.data;
+
   return (
     <MDBContainer className="cardProduct">
     <MDBRow>
       <MDBCol>
         <MDBCard className="text-black">
-          <MDBIcon fab icon="apple" size="lg" className="px-3 pt-3 pb-2" />
-          <MDBCardImage
-            src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/3.webp"
+          <MDBCardImage className="cardImage"
+            src={require(`../../shared/image/${product.imageUrl}`)}
             position="top"
             alt="Apple Computer"
           />
           <MDBCardBody>
             <div className="text-center">
-              <MDBCardTitle>Believing is seeing</MDBCardTitle>
-              <p className="text-muted">Apple pro display XDR</p>
+              <MDBCardTitle>{product.productName}</MDBCardTitle>
+              <p className="text-muted m-0">{product.description}</p>
             </div>
             <div>
               <div className="d-flex justify-content-between">
-                <span>Pro Display XDR</span>
-                <span>$5,999</span>
+                <span>Purity: {product.purity}</span>
+                <span>weight: {product.weight} chỉ</span>
               </div>
             </div>
-            <div className="d-flex justify-content-between total font-weight-bold">
-              <span>Total</span>
-              <span>$7,197.00</span>
+            <div className="d-flex justify-content-between">
+              <MDBBtn rounded className='px-1 mx-0'  color='success'>
+                Buy Now
+              </MDBBtn>
+              <MDBBtn rounded className='px-1 mx-0' color='secondary'>
+                Add To Cart
+              </MDBBtn>
             </div>
           </MDBCardBody>
         </MDBCard>
