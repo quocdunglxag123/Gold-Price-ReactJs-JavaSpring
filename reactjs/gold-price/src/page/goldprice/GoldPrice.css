@@ -1,11 +1,40 @@
 .cellPrice {
-  background-color: rgb(101,2,5);
+  background-color: rgb(101, 2, 5);
 }
-.centerRow{
+
+.centerRow {
   display: flex;
   justify-content: center;
   text-align: center;
   align-items: flex-start;
 }
 
+.line {
+  flex: 1;
+  background-color: yellow;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+}
 
+.grid4Column{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.buttonOptionDrawLineChart{
+  color: yellow;
+  margin-right: 50px;
+  padding: 10px;
+  border: none;
+  background: none;
+}
+.multipleOptionDrawLineChart{
+  margin-left: 100px;
+}
+
+.buttonOptionDrawLineChart.active {
+  background-color: #9B0111;
+}

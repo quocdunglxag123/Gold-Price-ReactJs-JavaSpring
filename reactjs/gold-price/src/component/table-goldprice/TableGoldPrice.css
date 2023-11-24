@@ -11,5 +11,14 @@ td{
 
 .selfCenter{
   display: flex;
-  align-items: self-end;
+  justify-content: center;
 }
+
+.colorIncrease{
+  color: #00ff40 !important;
+}
+
+.colorDecrease{
+  color: #fa0000 !important;
+}
+

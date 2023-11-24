@@ -15,4 +15,19 @@ const productApi = (serviceCall, productName, description, weight, purity, price
 const goldPriceApi = () => {
     return  axios.get('https://mihong.vn/api/v1/gold/prices/current');
 }
-export {loginApi, registerApi, productApi, goldPriceApi}
+
+const goldPriceChartApi = async (gold_code, date_type) => {
+    try {
+        const response = await axios.get('https://mihong.vn/api/v1/gold/prices', {
+          params: {
+            gold_code: gold_code,
+            date_type: date_type,
+          },
+        });
+        return response;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+}
+
+export {loginApi, registerApi, productApi, goldPriceApi, goldPriceChartApi}

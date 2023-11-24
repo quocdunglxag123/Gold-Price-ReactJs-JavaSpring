@@ -1,0 +1,17 @@
+canvas {
+    background-color: rgb(215,139,28); /* Đặt màu nền của canvas thành trong suốt */
+    box-sizing: border-box;
+    display: block;
+    max-height: 200px;
+    width: 800px;
+    height: 200px;
+}
+
+.chartTitle{
+}
+
+.chartNote{
+}
+
+.chartBody{
+}
