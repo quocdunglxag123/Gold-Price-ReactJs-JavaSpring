@@ -12,8 +12,8 @@ const LineChart = ({ dataLine1, nameLine1, dataLine2, nameLine2, labelsX }) => {
         label: nameLine1,
         fill: false,
         lineTension: 0.1,
-        backgroundColor: 'rgba(255, 223, 0, 0.4)', // Màu vàng cho nền
-        borderColor: 'rgba(255, 0, 0, 1)', // Màu đỏ cho Line 1
+        backgroundColor: 'rgba(255, 223, 0, 0.4)', // yellow color for background
+        borderColor: 'rgba(255, 0, 0, 1)', // Red color for Line 1
         pointBackgroundColor: '#fff',
         pointBorderColor: 'rgba(255, 0, 0, 1)',
         data: dataLine1,
@@ -22,8 +22,8 @@ const LineChart = ({ dataLine1, nameLine1, dataLine2, nameLine2, labelsX }) => {
         label: nameLine2,
         fill: false,
         lineTension: 0.1,
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', // Màu đen cho Line 2
-        borderColor: 'rgba(0, 0, 0, 1)', // Màu đen cho Line 2
+        backgroundColor: 'rgba(0, 0, 0, 0.4)', // Black color for Line 2
+        borderColor: 'rgba(0, 0, 0, 1)', // Black color for Line 2
         pointBackgroundColor: '#fff',
         pointBorderColor: 'rgba(0, 0, 0, 1)',
         data: dataLine2,
@@ -35,17 +35,17 @@ const LineChart = ({ dataLine1, nameLine1, dataLine2, nameLine2, labelsX }) => {
     scales: {
       x: {
         ticks: {
-          color: 'white', // Chữ màu trắng cho trục x
+          color: 'white', // White text for the X-axis
         },
       },
       y: {
         ticks: {
-          color: 'white', // Chữ màu trắng cho trục y
+          color: 'white', // White text for the Y-axis
         },
       },
     },plugins: {
       legend: {
-        display: false, // Ẩn chú thích
+        display: false, // Hide Legend
       },
     },
   };

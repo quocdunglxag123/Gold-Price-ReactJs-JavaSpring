@@ -12,7 +12,7 @@ const GoldPrice = () => {
   const [goldPrice, setGoldPrice] = useState("");
 
   //Set-Get value of the selected option.
-  const [goldTypeLineChart, setGoldTypeLineChart] = useState("SJC");
+  const [goldCodeLineChart, setGoldCodeLineChart] = useState("SJC");
   const [timeGoldLineChart, setTimeGoldLineChart] = useState("1Y");
   
   //Data Line Chart
@@ -68,7 +68,7 @@ const GoldPrice = () => {
   //Get New Data Line Chart When Option Change
   const handleDataLineChart = async ()  => {
     const indexTimeOption = timeOptionLineChart.findIndex((value) => value === timeGoldLineChart);
-    let res = await goldPriceChartApi(goldTypeLineChart,indexTimeOption+1);
+    let res = await goldPriceChartApi(goldCodeLineChart,indexTimeOption+1);
     if (res.success && res.data != null) {
       let goldPriceChart = res.data;    
       const buyValues = goldPriceChart.map((item) => item.buy);
@@ -82,10 +82,10 @@ const GoldPrice = () => {
 
   //Draw New Chart When Choose New Option Base On Gold Type And Time
   useEffect(() => {
-    if(goldTypeLineChart && timeGoldLineChart){
+    if(goldCodeLineChart && timeGoldLineChart){
       handleDataLineChart();
     }
-  }, [goldTypeLineChart, timeGoldLineChart]);
+  },[goldCodeLineChart, timeGoldLineChart]);
   
   //Split the data into two parts to render two tables of the TableGoldPrice component.
   const middleIndex = Math.floor(goldPrice.length / 2);
@@ -113,8 +113,8 @@ const GoldPrice = () => {
             {Object.keys(goldPrice).length > 0 && 
               (goldPrice.map((gold)=>(
                 <button 
-                  onClick={()=>setGoldTypeLineChart(gold.code)} 
-                  className={`buttonOptionDrawLineChart ${gold.code === goldTypeLineChart ? "active" : ""}`} 
+                  onClick={()=>setGoldCodeLineChart(gold.code)} 
+                  className={`buttonOptionDrawLineChart ${gold.code === goldCodeLineChart ? "active" : ""}`} 
                   key={gold.code}>
                       {gold.code}
                 </button>

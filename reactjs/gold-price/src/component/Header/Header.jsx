@@ -36,7 +36,7 @@ const Header = () => {
                             <Link className="nav-link textLayout" to="../homepage">Home<span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link textLayout" to="../product">Product</Link>
+                            <Link className="nav-link textLayout" to="../product">Trang Sức</Link>
                         </li>
                         <li className="nav-item active">
                             <Link className="nav-link textLayout" to="../goldprice">Gold Price</Link>
