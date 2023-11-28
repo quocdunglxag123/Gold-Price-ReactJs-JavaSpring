@@ -6,19 +6,19 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "StatusOrder")
-public class StatusOrderEntity extends BaseEntity {
+@Table(name = "PaymentOrder")
+public class PaymentOrderEntity extends BaseEntity {
 	@Column(unique = true, nullable = false)
 	private String name;
 
-    @OneToOne(mappedBy = "statusOrderEntity")
+    @OneToOne(mappedBy = "paymentOrderEntity")
 	private OrderEntity orderEntity;
 
-	public StatusOrderEntity() {
+	public PaymentOrderEntity() {
 		super();
 	}
 
-	public StatusOrderEntity(String name, OrderEntity orderEntity) {
+	public PaymentOrderEntity(String name, OrderEntity orderEntity) {
 		super();
 		this.name = name;
 		this.orderEntity = orderEntity;

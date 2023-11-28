@@ -23,8 +23,13 @@ public class OrderEntity extends BaseEntity {
 
 	private BigDecimal totalAmount;
 
-	@OneToOne(mappedBy = "orderEntity", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "statusOrderId", referencedColumnName = "id")
 	private StatusOrderEntity statusOrderEntity;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "paymentOrderId", referencedColumnName = "id")
+	private PaymentOrderEntity paymentOrderEntity;
 
 	private String shippingAddress;
 
@@ -33,12 +38,13 @@ public class OrderEntity extends BaseEntity {
 	}
 
 	public OrderEntity(AccountEntity accountEntity, List<OrderItemEntity> orderItemEntities, BigDecimal totalAmount,
-			StatusOrderEntity statusOrderEntity, String shippingAddress) {
+			StatusOrderEntity statusOrderEntity, PaymentOrderEntity paymentOrderEntity, String shippingAddress) {
 		super();
 		this.accountEntity = accountEntity;
 		this.orderItemEntities = orderItemEntities;
 		this.totalAmount = totalAmount;
 		this.statusOrderEntity = statusOrderEntity;
+		this.paymentOrderEntity = paymentOrderEntity;
 		this.shippingAddress = shippingAddress;
 	}
 
@@ -72,6 +78,14 @@ public class OrderEntity extends BaseEntity {
 
 	public void setStatusOrderEntity(StatusOrderEntity statusOrderEntity) {
 		this.statusOrderEntity = statusOrderEntity;
+	}
+
+	public PaymentOrderEntity getPaymentOrderEntity() {
+		return paymentOrderEntity;
+	}
+
+	public void setPaymentOrderEntity(PaymentOrderEntity paymentOrderEntity) {
+		this.paymentOrderEntity = paymentOrderEntity;
 	}
 
 	public String getShippingAddress() {

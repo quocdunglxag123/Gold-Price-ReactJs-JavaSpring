@@ -39,7 +39,7 @@ public class AccountController {
 	private JwtService jwtService;
 
 	@PostMapping("/login")
-	public DataResponse accountLogin(@RequestBody AccountDto accountDto) {
+	public DataResponse login(@RequestBody AccountDto accountDto) {
 		if (accountDto.getServiceCall().equals("login")) {
 			Authentication authentication = authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(accountDto.getUsername(), accountDto.getPassword()));
@@ -90,7 +90,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/register")
-	public DataResponse accountRegister(@RequestBody RegisterDto registerDto) {
+	public DataResponse register(@RequestBody RegisterDto registerDto) {
 		if (registerDto.getServiceCall().equals("register")) {
 			// Case: register Account
 			return new DataResponse(accountService.addAccount(registerDto));
@@ -100,7 +100,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/account")
-	public DataResponse accountController(@RequestBody AccountDto accountDto) {
+	public DataResponse account(@RequestBody AccountDto accountDto) {
 		if (accountDto.getServiceCall().equals("getAll")) {
 			// Case: Get All Account
 			return new DataResponse(accountService.getAllAccount());

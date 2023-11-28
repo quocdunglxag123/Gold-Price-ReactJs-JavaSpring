@@ -109,7 +109,7 @@ public class AccountServiceImpl implements AccountService {
 		String encodedPassword = BCrypt.encode(account.getPassword());// BCrypt
 
 		// Get Role Customer
-		RoleEntity roleEntity = roleRepository.findByRoleName("customer");
+		RoleEntity roleEntity = roleRepository.findByName("customer");
 
 		if (roleEntity == null) {
 			throw new RoleException("Please add role customer!");

@@ -66,7 +66,7 @@ public class RoleServiceImpl implements RoleService {
 		RoleEntity roleEntityUpdate = roleRepository.findOneById(roleDto.getId());
 		if (roleEntityUpdate != null) {
 			// Case: Role is in database
-			roleEntityUpdate.setRoleName(roleDto.getRoleName());
+			roleEntityUpdate.setName(roleDto.getName());
 			roleRepository.save(roleEntityUpdate);
 			return true;
 		} else {

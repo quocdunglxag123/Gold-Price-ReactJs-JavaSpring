@@ -9,5 +9,5 @@ import com.goldprice.goldprice.entity.StatusOrderEntity;
 public interface StatusOrderRepository extends JpaRepository<StatusOrderEntity, Long> {
 	StatusOrderEntity findOneById(Long id);
 
-	StatusOrderEntity findByStatusOrderName(String statusName);
+	StatusOrderEntity findByName(String name);
 }

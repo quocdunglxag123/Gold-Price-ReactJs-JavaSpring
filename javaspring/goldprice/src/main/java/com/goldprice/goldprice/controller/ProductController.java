@@ -8,16 +8,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.goldprice.goldprice.dto.DataResponse;
 import com.goldprice.goldprice.dto.ProductDto;
+import com.goldprice.goldprice.dto.ProductMaterialDto;
+import com.goldprice.goldprice.dto.ProductPurityDto;
+import com.goldprice.goldprice.dto.ProductTypeDto;
+import com.goldprice.goldprice.service.ProductMaterialService;
+import com.goldprice.goldprice.service.ProductPurityService;
 import com.goldprice.goldprice.service.ProductService;
+import com.goldprice.goldprice.service.ProductTypeService;
 
 @RestController
 @CrossOrigin
 public class ProductController {
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductTypeService productTypeService;
+	@Autowired
+	private ProductPurityService productPurityService;
+	@Autowired
+	private ProductMaterialService productMaterialService;
 
 	@PostMapping("/product")
-	public DataResponse accountLogin(@RequestBody ProductDto productDto) {
+	public DataResponse product(@RequestBody ProductDto productDto) {
 		if (productDto.getServiceCall().equals("add")) {
 			// Case: Add Product By productDto property
 			return new DataResponse(productService.addProduct(productDto));
@@ -37,6 +49,72 @@ public class ProductController {
 
 		return new DataResponse("500", "Method Not Found");
 
+	}
+
+	@PostMapping("/productPurity")
+	public DataResponse productPurity(@RequestBody ProductPurityDto productPurityDto) {
+		if (productPurityDto.getServiceCall().equals("add")) {
+			// Case: Add Product Purity By productPurityDto property
+			return new DataResponse(productPurityService.addProductPurity(productPurityDto));
+		} else if (productPurityDto.getServiceCall().equals("get")) {
+			// Case: Get One Product Purity By productPurityDto property
+			return new DataResponse(productPurityService.getProductPurity(productPurityDto));
+		} else if (productPurityDto.getServiceCall().equals("getAll")) {
+			// Case: Get All Product Purity
+			return new DataResponse(productPurityService.getAllProductPurity());
+		} else if (productPurityDto.getServiceCall().equals("update")) {
+			// Case: Update Product Purity By productPurityDto property
+			return new DataResponse(productPurityService.updateProductPurity(productPurityDto));
+		} else if (productPurityDto.getServiceCall().equals("delete")) {
+			// Case: Delete Product Purity By productPurityDto property
+			return new DataResponse(productPurityService.deleteProductPurity(productPurityDto));
+		}
+
+		return new DataResponse("500", "Method Not Found");
+	}
+
+	@PostMapping("/productType")
+	public DataResponse productType(@RequestBody ProductTypeDto productTypeDto) {
+		if (productTypeDto.getServiceCall().equals("add")) {
+			// Case: Add Product Type By productTypeDto property
+			return new DataResponse(productTypeService.addProductType(productTypeDto));
+		} else if (productTypeDto.getServiceCall().equals("get")) {
+			// Case: Get One Product Type By productTypeDto property
+			return new DataResponse(productTypeService.getProductType(productTypeDto));
+		} else if (productTypeDto.getServiceCall().equals("getAll")) {
+			// Case: Get All Product Type
+			return new DataResponse(productTypeService.getAllProductType());
+		} else if (productTypeDto.getServiceCall().equals("update")) {
+			// Case: Update Product Type By productTypeDto property
+			return new DataResponse(productTypeService.updateProductType(productTypeDto));
+		} else if (productTypeDto.getServiceCall().equals("delete")) {
+			// Case: Delete Product Type By productTypeDto property
+			return new DataResponse(productTypeService.deleteProductType(productTypeDto));
+		}
+
+		return new DataResponse("500", "Method Not Found");
+	}
+
+	@PostMapping("/productMaterial")
+	public DataResponse productMaterial(@RequestBody ProductMaterialDto productMaterialDto) {
+		if (productMaterialDto.getServiceCall().equals("add")) {
+			// Case: Add Product Material By productMaterialDto property
+			return new DataResponse(productMaterialService.addProductMaterial(productMaterialDto));
+		} else if (productMaterialDto.getServiceCall().equals("get")) {
+			// Case: Get One Product Material By productMaterialDto property
+			return new DataResponse(productMaterialService.getProductMaterial(productMaterialDto));
+		} else if (productMaterialDto.getServiceCall().equals("getAll")) {
+			// Case: Get All Product Material
+			return new DataResponse(productMaterialService.getAllProductMaterial());
+		} else if (productMaterialDto.getServiceCall().equals("update")) {
+			// Case: Update Product Material By productMaterialDto property
+			return new DataResponse(productMaterialService.updateProductMaterial(productMaterialDto));
+		} else if (productMaterialDto.getServiceCall().equals("delete")) {
+			// Case: Delete Product Material By productMaterialDto property
+			return new DataResponse(productMaterialService.deleteProductMaterial(productMaterialDto));
+		}
+
+		return new DataResponse("500", "Method Not Found");
 	}
 
 }

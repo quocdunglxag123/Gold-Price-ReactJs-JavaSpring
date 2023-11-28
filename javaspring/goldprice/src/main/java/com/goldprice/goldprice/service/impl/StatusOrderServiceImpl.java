@@ -66,7 +66,7 @@ public class StatusOrderServiceImpl implements StatusOrderService {
 		StatusOrderEntity statusOrderEntityUpdate = statusOrderRepository.findOneById(statusOrderDto.getId());
 		if (statusOrderEntityUpdate != null) {
 			// Case: StatusOrder is in database
-			statusOrderEntityUpdate.setStatusOrderName(statusOrderDto.getStatusOrderName());
+			statusOrderEntityUpdate.setName(statusOrderDto.getName());
 			statusOrderRepository.save(statusOrderEntityUpdate);
 			return true;
 		} else {

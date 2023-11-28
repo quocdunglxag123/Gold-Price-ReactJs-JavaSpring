@@ -1,14 +1,15 @@
 package com.goldprice.goldprice.dto;
 
-public class RoleDto extends BaseDto {
+import com.goldprice.goldprice.entity.OrderEntity;
+
+public class PaymentOrderDto extends BaseDto {
 	private String name;
 
-	
-	public RoleDto() {
+	public PaymentOrderDto() {
 		super();
 	}
 
-	public RoleDto(String name) {
+	public PaymentOrderDto(String name) {
 		super();
 		this.name = name;
 	}
@@ -18,7 +19,7 @@ public class RoleDto extends BaseDto {
 	}
 
 	public void setName(String name) {
-		this.name = name.toLowerCase();
+		this.name = name;
 	}
 
 }

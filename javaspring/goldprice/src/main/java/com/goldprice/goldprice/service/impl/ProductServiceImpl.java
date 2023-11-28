@@ -67,32 +67,32 @@ public class ProductServiceImpl implements ProductService {
 	public Object updateProduct(ProductDto productDto) {
 		ProductEntity productEntityUpdate = productRepository.findOneById(productDto.getId());
 		if (productEntityUpdate != null) {
-			// Case: Product is in the database
-			if(productDto.getProductName() != null) {
-				productEntityUpdate.setProductName(productDto.getProductName());
-			}
-			
-			if(productDto.getImageUrl() != null) {
-				productEntityUpdate.setImageUrl(productDto.getImageUrl());
-			}
-			if(productDto.getInStock() >=0 ) {
-				productEntityUpdate.setInStock(productDto.getInStock());
-			}
-			if(productDto.getPrice() != null) {
-				productEntityUpdate.setPrice(productDto.getPrice());
-			}
-			if(productDto.getPurity() != null) {
-				productEntityUpdate.setPurity(productDto.getPurity());
-			}
-			if(productDto.getDescription() != null) {
-				productEntityUpdate.setDescription(productDto.getDescription());
-			}
-			
-			if(productDto.getWeight()>= 0) {
-				productEntityUpdate.setWeight(productDto.getWeight());
-			}
-			
-			productRepository.save(productEntityUpdate);
+//			// Case: Product is in the database
+//			if(productDto.getProductName() != null) {
+//				productEntityUpdate.setProductName(productDto.getProductName());
+//			}
+//			
+//			if(productDto.getImageUrl() != null) {
+//				productEntityUpdate.setImageUrl(productDto.getImageUrl());
+//			}
+//			if(productDto.getInStock() >=0 ) {
+//				productEntityUpdate.setInStock(productDto.getInStock());
+//			}
+//			if(productDto.getPrice() != null) {
+//				productEntityUpdate.setPrice(productDto.getPrice());
+//			}
+//			if(productDto.getPurity() != null) {
+//				productEntityUpdate.setPurity(productDto.getPurity());
+//			}
+//			if(productDto.getDescription() != null) {
+//				productEntityUpdate.setDescription(productDto.getDescription());
+//			}
+//			
+//			if(productDto.getWeight()>= 0) {
+//				productEntityUpdate.setWeight(productDto.getWeight());
+//			}
+//			
+//			productRepository.save(productEntityUpdate);
 			return true;
 		} else {
 			throw new ProductException("Product Not Found!"); // Đổi từ RoleException sang ProductException

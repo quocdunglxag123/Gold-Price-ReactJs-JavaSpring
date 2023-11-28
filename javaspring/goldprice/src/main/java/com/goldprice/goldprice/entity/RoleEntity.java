@@ -14,28 +14,27 @@ import jakarta.persistence.Table;
 @Table(name = "role")
 public class RoleEntity extends BaseEntity {
 	@Column(unique = true, nullable = false)
-	private String roleName;
-	
+	private String name;
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "roleEntities")
 	private List<AccountEntity> accountEntities = new ArrayList<>();
-	
-	
+
 	public RoleEntity() {
 		super();
 	}
 
-	public RoleEntity(String roleName, List<AccountEntity> accountEntities) {
+	public RoleEntity(String name, List<AccountEntity> accountEntities) {
 		super();
-		this.roleName = roleName;
+		this.name = name;
 		this.accountEntities = accountEntities;
 	}
 
-	public String getRoleName() {
-		return roleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName.toLowerCase();
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<AccountEntity> getAccountEntities() {
@@ -46,6 +45,4 @@ public class RoleEntity extends BaseEntity {
 		this.accountEntities = accountEntities;
 	}
 
-	
-	
 }

@@ -2,16 +2,31 @@ package com.goldprice.goldprice.entity;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Products")
 public class ProductEntity extends BaseEntity {
-	private String productName;
+	private String name;
 	private String description;
 	private int weight;
-	private String purity;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "purity_id", referencedColumnName = "id")
+	private ProductPurityEntity productPurityEntity;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	private ProductTypeEntity productTypeEntity;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "material_id", referencedColumnName = "id")
+	private ProductMaterialEntity productMaterialEntity;
+
 	private BigDecimal price;
 	private int inStock;
 	private String imageUrl;
@@ -20,24 +35,27 @@ public class ProductEntity extends BaseEntity {
 		super();
 	}
 
-	public ProductEntity(String productName, String description, int weight, String purity, BigDecimal price, int inStock,
-			String imageUrl) {
+	public ProductEntity(String name, String description, int weight, ProductPurityEntity productPurityEntity,
+			ProductTypeEntity productTypeEntity, ProductMaterialEntity productMaterialEntity, BigDecimal price,
+			int inStock, String imageUrl) {
 		super();
-		this.productName = productName;
+		this.name = name;
 		this.description = description;
 		this.weight = weight;
-		this.purity = purity;
+		this.productPurityEntity = productPurityEntity;
+		this.productTypeEntity = productTypeEntity;
+		this.productMaterialEntity = productMaterialEntity;
 		this.price = price;
 		this.inStock = inStock;
 		this.imageUrl = imageUrl;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -56,12 +74,28 @@ public class ProductEntity extends BaseEntity {
 		this.weight = weight;
 	}
 
-	public String getPurity() {
-		return purity;
+	public ProductPurityEntity getProductPurityEntity() {
+		return productPurityEntity;
 	}
 
-	public void setPurity(String purity) {
-		this.purity = purity;
+	public void setProductPurityEntity(ProductPurityEntity productPurityEntity) {
+		this.productPurityEntity = productPurityEntity;
+	}
+
+	public ProductTypeEntity getProductTypeEntity() {
+		return productTypeEntity;
+	}
+
+	public void setProductTypeEntity(ProductTypeEntity productTypeEntity) {
+		this.productTypeEntity = productTypeEntity;
+	}
+
+	public ProductMaterialEntity getProductMaterialEntity() {
+		return productMaterialEntity;
+	}
+
+	public void setProductMaterialEntity(ProductMaterialEntity productMaterialEntity) {
+		this.productMaterialEntity = productMaterialEntity;
 	}
 
 	public BigDecimal getPrice() {

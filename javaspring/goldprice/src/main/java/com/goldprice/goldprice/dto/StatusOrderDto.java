@@ -3,33 +3,23 @@ package com.goldprice.goldprice.dto;
 import com.goldprice.goldprice.entity.OrderEntity;
 
 public class StatusOrderDto extends BaseDto {
-	private String statusOrderName;
-	private OrderEntity orderEntity;
+	private String name;
 
 	public StatusOrderDto() {
 		super();
 	}
 
-	public StatusOrderDto(String statusOrderName, OrderEntity orderEntity) {
+	public StatusOrderDto(String name) {
 		super();
-		this.statusOrderName = statusOrderName;
-		this.orderEntity = orderEntity;
+		this.name = name;
 	}
 
-	public String getStatusOrderName() {
-		return statusOrderName;
+	public String getName() {
+		return name;
 	}
 
-	public void setStatusOrderName(String statusOrderName) {
-		this.statusOrderName = statusOrderName;
-	}
-
-	public OrderEntity getOrderEntity() {
-		return orderEntity;
-	}
-
-	public void setOrderEntity(OrderEntity orderEntity) {
-		this.orderEntity = orderEntity;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

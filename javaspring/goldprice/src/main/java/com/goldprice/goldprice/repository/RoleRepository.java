@@ -9,5 +9,5 @@ import com.goldprice.goldprice.entity.RoleEntity;
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
 	RoleEntity findOneById(Long id);
 
-	RoleEntity findByRoleName(String roleName);
+	RoleEntity findByName(String name);
 }

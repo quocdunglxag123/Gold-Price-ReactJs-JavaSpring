@@ -24,7 +24,7 @@ public class AccountEntityUserDetails implements UserDetails {
 		username = accountEntity.getUsername();
 		password = accountEntity.getPassword();
 		authorities = accountEntity.getRoleEntities().stream()
-				.map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getRoleName())).collect(Collectors.toList());
+				.map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getName())).collect(Collectors.toList());
 	}
 
 	@Override
