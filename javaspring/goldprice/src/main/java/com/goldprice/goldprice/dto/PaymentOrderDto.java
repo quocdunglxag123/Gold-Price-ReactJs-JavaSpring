@@ -1,7 +1,5 @@
 package com.goldprice.goldprice.dto;
 
-import com.goldprice.goldprice.entity.OrderEntity;
-
 public class PaymentOrderDto extends BaseDto {
 	private String name;
 

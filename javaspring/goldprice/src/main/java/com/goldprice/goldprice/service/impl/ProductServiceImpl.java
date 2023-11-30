@@ -68,8 +68,8 @@ public class ProductServiceImpl implements ProductService {
 		ProductEntity productEntityUpdate = productRepository.findOneById(productDto.getId());
 		if (productEntityUpdate != null) {
 //			// Case: Product is in the database
-//			if(productDto.getProductName() != null) {
-//				productEntityUpdate.setProductName(productDto.getProductName());
+//			if(productDto.getName() != null) {
+//				productEntityUpdate.setName(productDto.getName());
 //			}
 //			
 //			if(productDto.getImageUrl() != null) {

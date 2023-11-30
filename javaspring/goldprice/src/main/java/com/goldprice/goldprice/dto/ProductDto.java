@@ -3,10 +3,12 @@ package com.goldprice.goldprice.dto;
 import java.math.BigDecimal;
 
 public class ProductDto extends BaseDto {
-	private String productName;
+	private String name;
 	private String description;
 	private int weight;
-	private String purity;
+	private ProductPurityDto productPurityDto;
+	private ProductTypeDto productTypeDto;
+	private ProductMaterialDto productMaterialDto;
 	private BigDecimal price;
 	private int inStock;
 	private String imageUrl;
@@ -15,24 +17,27 @@ public class ProductDto extends BaseDto {
 		super();
 	}
 
-	public ProductDto(String productName, String description, int weight, String purity, BigDecimal price, int inStock,
+	public ProductDto(String name, String description, int weight, ProductPurityDto productPurityDto,
+			ProductTypeDto productTypeDto, ProductMaterialDto productMaterialDto, BigDecimal price, int inStock,
 			String imageUrl) {
 		super();
-		this.productName = productName;
+		this.name = name;
 		this.description = description;
 		this.weight = weight;
-		this.purity = purity;
+		this.productPurityDto = productPurityDto;
+		this.productTypeDto = productTypeDto;
+		this.productMaterialDto = productMaterialDto;
 		this.price = price;
 		this.inStock = inStock;
 		this.imageUrl = imageUrl;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -51,12 +56,28 @@ public class ProductDto extends BaseDto {
 		this.weight = weight;
 	}
 
-	public String getPurity() {
-		return purity;
+	public ProductPurityDto getProductPurityDto() {
+		return productPurityDto;
 	}
 
-	public void setPurity(String purity) {
-		this.purity = purity;
+	public void setProductPurityDto(ProductPurityDto productPurityDto) {
+		this.productPurityDto = productPurityDto;
+	}
+
+	public ProductTypeDto getProductTypeDto() {
+		return productTypeDto;
+	}
+
+	public void setProductTypeDto(ProductTypeDto productTypeDto) {
+		this.productTypeDto = productTypeDto;
+	}
+
+	public ProductMaterialDto getProductMaterialDto() {
+		return productMaterialDto;
+	}
+
+	public void setProductMaterialDto(ProductMaterialDto productMaterialDto) {
+		this.productMaterialDto = productMaterialDto;
 	}
 
 	public BigDecimal getPrice() {

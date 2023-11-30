@@ -11,6 +11,8 @@ public class OrderDto extends BaseDto {
 	private BigDecimal totalAmount;
 
 	private StatusOrderDto statusOrderDto;
+	
+	private PaymentOrderDto paymentOrderDto;
 
 	private String shippingAddress;
 
@@ -19,13 +21,22 @@ public class OrderDto extends BaseDto {
 	}
 
 	public OrderDto(AccountDto accountDto, List<OrderItemDto> orderItemDtos, BigDecimal totalAmount,
-			StatusOrderDto statusOrderDto, String shippingAddress) {
+			StatusOrderDto statusOrderDto, PaymentOrderDto paymentOrderDto, String shippingAddress) {
 		super();
 		this.accountDto = accountDto;
 		this.orderItemDtos = orderItemDtos;
 		this.totalAmount = totalAmount;
 		this.statusOrderDto = statusOrderDto;
+		this.paymentOrderDto = paymentOrderDto;
 		this.shippingAddress = shippingAddress;
+	}
+
+	public PaymentOrderDto getPaymentOrderDto() {
+		return paymentOrderDto;
+	}
+
+	public void setPaymentOrderDto(PaymentOrderDto paymentOrderDto) {
+		this.paymentOrderDto = paymentOrderDto;
 	}
 
 	public AccountDto getAccountDto() {
