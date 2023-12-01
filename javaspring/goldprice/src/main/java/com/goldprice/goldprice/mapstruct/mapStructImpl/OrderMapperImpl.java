@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.goldprice.goldprice.dto.OrderDto;
-import com.goldprice.goldprice.dto.OrderItemDto;
-import com.goldprice.goldprice.entity.OrderEntity;
-import com.goldprice.goldprice.entity.OrderItemEntity;
+import com.goldprice.goldprice.dto.order.OrderDto;
+import com.goldprice.goldprice.dto.order.OrderItemDto;
+import com.goldprice.goldprice.entity.order.OrderEntity;
+import com.goldprice.goldprice.entity.order.OrderItemEntity;
 import com.goldprice.goldprice.mapstruct.AccountMapper;
 import com.goldprice.goldprice.mapstruct.GenerateMapper;
 import com.goldprice.goldprice.mapstruct.OrderItemMapper;

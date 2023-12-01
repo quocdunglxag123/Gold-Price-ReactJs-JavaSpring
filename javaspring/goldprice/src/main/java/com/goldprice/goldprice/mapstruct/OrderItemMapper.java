@@ -2,8 +2,8 @@ package com.goldprice.goldprice.mapstruct;
 
 import java.util.List;
 
-import com.goldprice.goldprice.dto.OrderItemDto;
-import com.goldprice.goldprice.entity.OrderItemEntity;
+import com.goldprice.goldprice.dto.order.OrderItemDto;
+import com.goldprice.goldprice.entity.order.OrderItemEntity;
 
 public interface OrderItemMapper {
 	// ----------------------------Order Item Start---------------------------

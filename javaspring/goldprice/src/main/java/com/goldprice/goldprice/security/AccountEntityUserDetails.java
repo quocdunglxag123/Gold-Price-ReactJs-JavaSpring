@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.goldprice.goldprice.entity.AccountEntity;
+import com.goldprice.goldprice.entity.account.AccountEntity;
 
 public class AccountEntityUserDetails implements UserDetails {
 

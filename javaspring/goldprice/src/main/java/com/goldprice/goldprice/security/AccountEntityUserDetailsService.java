@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.goldprice.goldprice.entity.AccountEntity;
+import com.goldprice.goldprice.entity.account.AccountEntity;
 import com.goldprice.goldprice.exception.AccountException;
-import com.goldprice.goldprice.repository.AccountRepository;
+import com.goldprice.goldprice.repository.account.AccountRepository;
 
 @Component
 public class AccountEntityUserDetailsService implements UserDetailsService {

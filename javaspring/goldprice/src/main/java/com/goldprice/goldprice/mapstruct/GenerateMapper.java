@@ -4,22 +4,22 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
-import com.goldprice.goldprice.dto.PaymentOrderDto;
-import com.goldprice.goldprice.dto.ProductDto;
-import com.goldprice.goldprice.dto.ProductMaterialDto;
-import com.goldprice.goldprice.dto.ProductPurityDto;
-import com.goldprice.goldprice.dto.ProductTypeDto;
-import com.goldprice.goldprice.dto.RoleDto;
-import com.goldprice.goldprice.dto.StatusOrderDto;
-import com.goldprice.goldprice.dto.UserInfoDto;
-import com.goldprice.goldprice.entity.PaymentOrderEntity;
-import com.goldprice.goldprice.entity.ProductEntity;
-import com.goldprice.goldprice.entity.ProductMaterialEntity;
-import com.goldprice.goldprice.entity.ProductPurityEntity;
-import com.goldprice.goldprice.entity.ProductTypeEntity;
-import com.goldprice.goldprice.entity.RoleEntity;
-import com.goldprice.goldprice.entity.StatusOrderEntity;
-import com.goldprice.goldprice.entity.UserInfoEntity;
+import com.goldprice.goldprice.dto.account.RoleDto;
+import com.goldprice.goldprice.dto.account.UserInfoDto;
+import com.goldprice.goldprice.dto.order.PaymentOrderDto;
+import com.goldprice.goldprice.dto.order.StatusOrderDto;
+import com.goldprice.goldprice.dto.product.ProductDto;
+import com.goldprice.goldprice.dto.product.ProductMaterialDto;
+import com.goldprice.goldprice.dto.product.ProductPurityDto;
+import com.goldprice.goldprice.dto.product.ProductTypeDto;
+import com.goldprice.goldprice.entity.account.RoleEntity;
+import com.goldprice.goldprice.entity.account.UserInfoEntity;
+import com.goldprice.goldprice.entity.order.PaymentOrderEntity;
+import com.goldprice.goldprice.entity.order.StatusOrderEntity;
+import com.goldprice.goldprice.entity.product.ProductEntity;
+import com.goldprice.goldprice.entity.product.ProductMaterialEntity;
+import com.goldprice.goldprice.entity.product.ProductPurityEntity;
+import com.goldprice.goldprice.entity.product.ProductTypeEntity;
 
 @Mapper(componentModel = "spring")
 public interface GenerateMapper {

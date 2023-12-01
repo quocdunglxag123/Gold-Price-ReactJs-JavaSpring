@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.goldprice.goldprice.dto.DataResponse;
 import com.goldprice.goldprice.exception.AccountException;
-import com.goldprice.goldprice.exception.TokenException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -24,11 +23,6 @@ public class GlobalExceptionHandler {
 		return new DataResponse("400", e.getMessage());
 	}
 	
-	@ExceptionHandler(TokenException.class)
-	@ResponseBody
-	public DataResponse handleTokenException(TokenException e) {
-		return new DataResponse("400", e.getMessage());
-	}
 
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
 	@ResponseBody

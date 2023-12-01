@@ -2,9 +2,9 @@ package com.goldprice.goldprice.mapstruct;
 
 import java.util.List;
 
-import com.goldprice.goldprice.dto.AccountDto;
-import com.goldprice.goldprice.dto.RegisterDto;
-import com.goldprice.goldprice.entity.AccountEntity;
+import com.goldprice.goldprice.dto.account.AccountDto;
+import com.goldprice.goldprice.dto.account.RegisterDto;
+import com.goldprice.goldprice.entity.account.AccountEntity;
 
 public interface AccountMapper {
 	// ----------------------------Entity To DTO---------------------------

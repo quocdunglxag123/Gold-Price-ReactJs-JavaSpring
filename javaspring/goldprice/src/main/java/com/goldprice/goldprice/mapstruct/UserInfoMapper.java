@@ -1,7 +1,7 @@
 package com.goldprice.goldprice.mapstruct;
 
-import com.goldprice.goldprice.dto.RegisterDto;
-import com.goldprice.goldprice.entity.UserInfoEntity;
+import com.goldprice.goldprice.dto.account.RegisterDto;
+import com.goldprice.goldprice.entity.account.UserInfoEntity;
 
 
 public interface UserInfoMapper {

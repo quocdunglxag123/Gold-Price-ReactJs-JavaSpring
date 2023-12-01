@@ -3,7 +3,8 @@ package com.goldprice.goldprice.shared;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-import com.goldprice.goldprice.exception.TokenException;
+import com.goldprice.goldprice.exception.AccountException;
+
 
 public class MachineInfo {
 	/*
@@ -17,7 +18,7 @@ public class MachineInfo {
 			String ip = socket.getLocalAddress().getHostAddress();
 			return ip;
 		} catch (Exception e) {
-			throw new TokenException("Ip Address Is Not Found, Please Contact Admin!");
+			throw new AccountException("Ip Address Is Not Found, Please Contact Admin!");
 		}
 	}
 	
@@ -32,7 +33,7 @@ public class MachineInfo {
 			String name = socket.getLocalAddress().getHostName();
 			return name;
 		} catch (Exception e) {
-			throw new TokenException("Name Machine Is Not Found, Please Contact Admin!");
+			throw new AccountException("Name Machine Is Not Found, Please Contact Admin!");
 		}
 	}
 }

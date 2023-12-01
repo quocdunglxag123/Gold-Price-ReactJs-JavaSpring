@@ -13,7 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.goldprice.goldprice.dto.DataResponse;
 import com.goldprice.goldprice.security.AccountEntityUserDetailsService;
-import com.goldprice.goldprice.service.JwtService;
+import com.goldprice.goldprice.service.account.JwtService;
 import com.google.gson.Gson;
 
 import io.jsonwebtoken.ExpiredJwtException;

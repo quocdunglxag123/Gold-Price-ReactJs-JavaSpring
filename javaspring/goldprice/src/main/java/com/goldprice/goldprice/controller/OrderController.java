@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.goldprice.goldprice.dto.DataResponse;
-import com.goldprice.goldprice.dto.OrderDto;
-import com.goldprice.goldprice.dto.OrderItemDto;
-import com.goldprice.goldprice.dto.PaymentOrderDto;
-import com.goldprice.goldprice.dto.StatusOrderDto;
-import com.goldprice.goldprice.service.OrderItemService;
-import com.goldprice.goldprice.service.OrderService;
-import com.goldprice.goldprice.service.PaymentOrderService;
-import com.goldprice.goldprice.service.StatusOrderService;
+import com.goldprice.goldprice.dto.order.OrderDto;
+import com.goldprice.goldprice.dto.order.OrderItemDto;
+import com.goldprice.goldprice.dto.order.PaymentOrderDto;
+import com.goldprice.goldprice.dto.order.StatusOrderDto;
+import com.goldprice.goldprice.service.order.OrderItemService;
+import com.goldprice.goldprice.service.order.OrderService;
+import com.goldprice.goldprice.service.order.PaymentOrderService;
+import com.goldprice.goldprice.service.order.StatusOrderService;
 
 @RestController
 @CrossOrigin

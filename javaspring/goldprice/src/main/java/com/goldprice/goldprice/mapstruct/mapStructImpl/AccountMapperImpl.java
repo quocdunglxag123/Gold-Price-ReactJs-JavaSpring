@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.goldprice.goldprice.dto.AccountDto;
-import com.goldprice.goldprice.dto.RegisterDto;
-import com.goldprice.goldprice.entity.AccountEntity;
+import com.goldprice.goldprice.dto.account.AccountDto;
+import com.goldprice.goldprice.dto.account.RegisterDto;
+import com.goldprice.goldprice.entity.account.AccountEntity;
 import com.goldprice.goldprice.mapstruct.AccountMapper;
 import com.goldprice.goldprice.mapstruct.GenerateMapper;
 @Component

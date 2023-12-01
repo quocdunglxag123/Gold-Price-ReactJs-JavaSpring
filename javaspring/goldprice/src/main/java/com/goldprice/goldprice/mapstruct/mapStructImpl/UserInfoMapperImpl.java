@@ -2,8 +2,8 @@ package com.goldprice.goldprice.mapstruct.mapStructImpl;
 
 import org.springframework.stereotype.Component;
 
-import com.goldprice.goldprice.dto.RegisterDto;
-import com.goldprice.goldprice.entity.UserInfoEntity;
+import com.goldprice.goldprice.dto.account.RegisterDto;
+import com.goldprice.goldprice.entity.account.UserInfoEntity;
 import com.goldprice.goldprice.mapstruct.UserInfoMapper;
 
 @Component
