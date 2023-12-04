@@ -8,7 +8,6 @@ import com.goldprice.goldprice.dto.account.RoleDto;
 import com.goldprice.goldprice.dto.account.UserInfoDto;
 import com.goldprice.goldprice.dto.order.PaymentOrderDto;
 import com.goldprice.goldprice.dto.order.StatusOrderDto;
-import com.goldprice.goldprice.dto.product.ProductDto;
 import com.goldprice.goldprice.dto.product.ProductMaterialDto;
 import com.goldprice.goldprice.dto.product.ProductPurityDto;
 import com.goldprice.goldprice.dto.product.ProductTypeDto;
@@ -16,7 +15,6 @@ import com.goldprice.goldprice.entity.account.RoleEntity;
 import com.goldprice.goldprice.entity.account.UserInfoEntity;
 import com.goldprice.goldprice.entity.order.PaymentOrderEntity;
 import com.goldprice.goldprice.entity.order.StatusOrderEntity;
-import com.goldprice.goldprice.entity.product.ProductEntity;
 import com.goldprice.goldprice.entity.product.ProductMaterialEntity;
 import com.goldprice.goldprice.entity.product.ProductPurityEntity;
 import com.goldprice.goldprice.entity.product.ProductTypeEntity;
@@ -46,18 +44,7 @@ public interface GenerateMapper {
 	UserInfoEntity userInfoDtoToUserInfoEntity(UserInfoDto userInfoDto);
 	// ----------------------------UserInfo End---------------------------
 
-	// ----------------------------Product Start---------------------------
-	// Entity To DTO
-	ProductDto productEntityToProductDto(ProductEntity productEntity);
-
-	List<ProductDto> listProductEntityToListProductDto(List<ProductEntity> productEntities);
-
-	// DTO To Entity
-	ProductEntity productDtoToProductEntity(ProductDto productDto);
-
-	List<ProductEntity> listProductDtoToListProductEntity(List<ProductDto> productDtos);
-	// ----------------------------Product End---------------------------
-
+	
 	// ----------------------------StatusOrder Start---------------------------
 	// Entity To DTO
 	StatusOrderDto statusOrderEntityToStatusOrderDto(StatusOrderEntity statusOrderEntity);

@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 
 import com.goldprice.goldprice.dto.order.OrderItemDto;
 import com.goldprice.goldprice.entity.order.OrderItemEntity;
-import com.goldprice.goldprice.mapstruct.GenerateMapper;
 import com.goldprice.goldprice.mapstruct.OrderItemMapper;
+import com.goldprice.goldprice.mapstruct.ProductMapper;
 
 @Component
 public class OrderItemMapperImpl implements OrderItemMapper {
+
 	@Autowired
-	GenerateMapper generateMapper;
+	ProductMapper productMapper;
 
 	@Override
 	public OrderItemDto orderItemEntityToOrderItemDto(OrderItemEntity orderItemEntity) {
@@ -22,7 +23,7 @@ public class OrderItemMapperImpl implements OrderItemMapper {
 		orderItemDto.setCreateDate(orderItemEntity.getCreateDate());
 		orderItemDto.setUpdateDate(orderItemEntity.getUpdateDate());
 		orderItemDto.setId(orderItemEntity.getId());
-		orderItemDto.setProductDto(generateMapper.productEntityToProductDto(orderItemEntity.getProductEntity()));
+		orderItemDto.setProductDto(productMapper.productEntityToProductDto(orderItemEntity.getProductEntity()));
 		orderItemDto.setQuantity(orderItemEntity.getQuantity());
 		orderItemDto.setSubtotal(orderItemEntity.getSubTotal());
 		return orderItemDto;
@@ -34,7 +35,7 @@ public class OrderItemMapperImpl implements OrderItemMapper {
 		orderItemEntity.setCreateDate(orderItemDto.getCreateDate());
 		orderItemEntity.setUpdateDate(orderItemDto.getUpdateDate());
 		orderItemEntity.setId(orderItemDto.getId());
-		orderItemEntity.setProductEntity(generateMapper.productDtoToProductEntity(orderItemDto.getProductDto()));
+		orderItemEntity.setProductEntity(productMapper.productDtoToProductEntity(orderItemDto.getProductDto()));
 		orderItemEntity.setQuantity(orderItemDto.getQuantity());
 		orderItemEntity.setSubTotal(orderItemDto.getSubtotal());
 		return orderItemEntity;

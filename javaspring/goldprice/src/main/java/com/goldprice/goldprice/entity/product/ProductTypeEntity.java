@@ -4,7 +4,6 @@ import com.goldprice.goldprice.entity.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,17 +12,13 @@ public class ProductTypeEntity extends BaseEntity {
 	@Column(unique = true, nullable = false)
 	private String name;
 
-	@OneToOne(mappedBy = "productTypeEntity")
-	private ProductEntity productEntity;
-
 	public ProductTypeEntity() {
 		super();
 	}
 
-	public ProductTypeEntity(String name, ProductEntity productEntity) {
+	public ProductTypeEntity(String name) {
 		super();
 		this.name = name;
-		this.productEntity = productEntity;
 	}
 
 	public String getName() {
@@ -32,14 +27,6 @@ public class ProductTypeEntity extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public ProductEntity getProductEntity() {
-		return productEntity;
-	}
-
-	public void setProductEntity(ProductEntity productEntity) {
-		this.productEntity = productEntity;
 	}
 
 }

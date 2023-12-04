@@ -29,6 +29,8 @@ public class OrderMapperImpl implements OrderMapper {
 		orderDto.setId(orderEntity.getId());
 		orderDto.setStatusOrderDto(
 				generateMapper.statusOrderEntityToStatusOrderDto(orderEntity.getStatusOrderEntity()));
+		orderDto.setPaymentOrderDto(
+				generateMapper.paymentOrderEntityToPaymentOrderDto(orderEntity.getPaymentOrderEntity()));
 		orderDto.setShippingAddress(orderEntity.getShippingAddress());
 		orderDto.setTotalAmount(orderEntity.getTotalAmount());
 		orderDto.setAccountDto(accountMapper.accountEntityToAccountDto(orderEntity.getAccountEntity()));
@@ -47,6 +49,8 @@ public class OrderMapperImpl implements OrderMapper {
 		orderEntity.setId(orderDto.getId());
 		orderEntity
 				.setStatusOrderEntity(generateMapper.statusOrderDtoToStatusOrderEntity(orderDto.getStatusOrderDto()));
+		orderEntity
+		.setPaymentOrderEntity(generateMapper.paymentOrderDtoToPaymentOrderEntity(orderDto.getPaymentOrderDto()));
 		orderEntity.setShippingAddress(orderDto.getShippingAddress());
 		orderEntity.setTotalAmount(orderDto.getTotalAmount());
 		orderEntity.setAccountEntity(accountMapper.accountDtoToAccountEntity(orderDto.getAccountDto()));

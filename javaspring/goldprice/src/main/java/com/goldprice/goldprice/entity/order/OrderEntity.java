@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,12 +25,12 @@ public class OrderEntity extends BaseEntity {
 
 	private BigDecimal totalAmount;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "statusOrderId", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "statusOrderId")
 	private StatusOrderEntity statusOrderEntity;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "paymentOrderId", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "paymentOrderId")
 	private PaymentOrderEntity paymentOrderEntity;
 
 	private String shippingAddress;

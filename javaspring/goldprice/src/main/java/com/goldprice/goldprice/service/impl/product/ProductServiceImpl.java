@@ -11,7 +11,7 @@ import com.goldprice.goldprice.entity.product.ProductMaterialEntity;
 import com.goldprice.goldprice.entity.product.ProductPurityEntity;
 import com.goldprice.goldprice.entity.product.ProductTypeEntity;
 import com.goldprice.goldprice.exception.ProductException;
-import com.goldprice.goldprice.mapstruct.GenerateMapper;
+import com.goldprice.goldprice.mapstruct.ProductMapper;
 import com.goldprice.goldprice.repository.product.ProductMaterialRepository;
 import com.goldprice.goldprice.repository.product.ProductPurityRepository;
 import com.goldprice.goldprice.repository.product.ProductRepository;
@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private ProductPurityRepository productPurityRepository;
 	@Autowired
-	private GenerateMapper productMapper;
+	private ProductMapper productMapper;
 
 	/**
 	 * Get Product
@@ -42,7 +42,8 @@ public class ProductServiceImpl implements ProductService {
 	 */
 	@Override
 	public Object getProduct(ProductDto productDto) {
-		return productMapper.productEntityToProductDto(productRepository.findOneById(productDto.getId()));
+		ProductEntity productEntity = productRepository.findOneById(productDto.getId());
+		return productMapper.productEntityToProductDto(productEntity);
 	}
 
 	/**
@@ -136,7 +137,7 @@ public class ProductServiceImpl implements ProductService {
 	 * 
 	 * @param productDto    ProductDto contains information about a product
 	 * @param productEntity ProductEntity contains information about a product
-	 * @param flagAdd    boolean Flag check update or add
+	 * @param flagAdd       boolean Flag check update or add
 	 * 
 	 * @return true/Exception Success/failed to delete
 	 */
@@ -160,7 +161,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 			productEntity.setProductTypeEntity(productTypeEntity);
 
-		} else if(flagAdd){
+		} else if (flagAdd) {
 			throw new ProductException("Please Add Product Type!");
 		}
 
@@ -181,7 +182,7 @@ public class ProductServiceImpl implements ProductService {
 				throw new ProductException("Product Purity Not Found!");
 			}
 			productEntity.setProductPurityEntity(productPurityEntity);
-		} else if(flagAdd){
+		} else if (flagAdd) {
 			throw new ProductException("Please Add Product Purity!");
 		}
 
@@ -206,7 +207,7 @@ public class ProductServiceImpl implements ProductService {
 			}
 			productEntity.setProductMaterialEntity(productMaterialEntity);
 
-		} else if(flagAdd){
+		} else if (flagAdd) {
 			throw new ProductException("Please Add Product Material!");
 		}
 

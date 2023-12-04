@@ -40,8 +40,15 @@ public class OrderServiceImpl implements OrderService {
 	 * @return orderDto Object contains information about an order in database
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public Object getOrder(OrderDto orderDto) {
 		OrderEntity orderEntity = orderRepository.findOneById(orderDto.getId());
+
+		// Update new Total Price Of Order
+		BigDecimal newTotalPrice = getNewTotalPriceOrder(orderEntity);
+		orderEntity.setTotalAmount(newTotalPrice);
+		orderRepository.save(orderEntity);
+
 		return orderMapper.orderEntityToOrderDto(orderEntity);
 	}
 
@@ -110,15 +117,12 @@ public class OrderServiceImpl implements OrderService {
 				orderEntityUpdate.setShippingAddress(orderDto.getShippingAddress());
 			}
 
-			// Update Total Price Base On OrderItemEntity
+			// Get new Total Price Of Order To Update
 			// About orderDto.getOrderItemDtos() never use in this function because not
 			// permit to update OrderItem In OrderSevice
-			BigDecimal totalPrice = new BigDecimal(0);
-			for (OrderItemEntity orderItemEntity : orderEntityUpdate.getOrderItemEntities()) {
-				BigDecimal subTotal = orderItemEntity.getSubTotal();
-				totalPrice.add(subTotal);
-			}
-			orderEntityUpdate.setTotalAmount(totalPrice);
+			BigDecimal newTotalPrice = getNewTotalPriceOrder(orderEntityUpdate);
+
+			orderEntityUpdate.setTotalAmount(newTotalPrice);
 			orderRepository.save(orderEntityUpdate);
 			return true;
 		} else {
@@ -137,6 +141,22 @@ public class OrderServiceImpl implements OrderService {
 	public Object deleteOrder(OrderDto orderDto) {
 		orderRepository.deleteById(orderDto.getId());
 		return true;
+	}
+
+	/**
+	 * get New Total Price Order
+	 * 
+	 * @param orderEntity OrderEntity contains information about an order to
+	 *                    Caculater Total Price
+	 * 
+	 * @return true/Exception Success/failed to delete
+	 */
+	private BigDecimal getNewTotalPriceOrder(OrderEntity orderEntity) {
+		BigDecimal totalPrice = BigDecimal.ZERO;
+		for (OrderItemEntity orderItemEntity : orderEntity.getOrderItemEntities()) {
+			totalPrice= totalPrice.add( orderItemEntity.getSubTotal());
+		}
+		return totalPrice;
 	}
 
 }

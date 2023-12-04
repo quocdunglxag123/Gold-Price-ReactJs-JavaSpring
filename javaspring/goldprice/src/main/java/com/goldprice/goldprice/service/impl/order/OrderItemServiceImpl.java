@@ -11,8 +11,8 @@ import com.goldprice.goldprice.entity.order.OrderEntity;
 import com.goldprice.goldprice.entity.order.OrderItemEntity;
 import com.goldprice.goldprice.entity.product.ProductEntity;
 import com.goldprice.goldprice.exception.OrderException;
-import com.goldprice.goldprice.mapstruct.GenerateMapper;
 import com.goldprice.goldprice.mapstruct.OrderItemMapper;
+import com.goldprice.goldprice.mapstruct.ProductMapper;
 import com.goldprice.goldprice.repository.order.OrderItemRepository;
 import com.goldprice.goldprice.repository.order.OrderRepository;
 import com.goldprice.goldprice.repository.product.ProductRepository;
@@ -39,7 +39,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 	private ProductRepository productRepository;
 
 	@Autowired
-	GenerateMapper generateMapper;
+	ProductMapper productMapper;
 
 	/**
 	 * Get OrderItem
@@ -69,17 +69,19 @@ public class OrderItemServiceImpl implements OrderItemService {
 	public Object addOrderItem(OrderItemDto orderItemDto) {
 		OrderItemEntity orderItemEntity = orderItemMapper.orderItemDtoToOrderItemEntity(orderItemDto);
 
+		// Get Product To Add
 		ProductEntity productEntity = productRepository.findOneById(orderItemEntity.getProductEntity().getId());
-		orderItemEntity.setProductEntity(productEntity);
+		// Get Order To Add
+		OrderEntity orderEntity = orderRepository.findOneById(orderItemDto.getOrderDto().getId());
 
+		// Check Quantity Of OrderItem Is More Than Product In Stock
 		int inStockNew = productEntity.getInStock() - orderItemEntity.getQuantity();
 		if (inStockNew < 0) {
-			// Check Quantity Is More Than Product In Stock
 			throw new OrderException("Quantity Is More Than Product In Stock!");
 		}
-		OrderEntity orderEntity = orderRepository.findOneById(orderItemDto.getOrderDto().getId());
-		orderItemEntity.setOrderEntity(orderEntity);
 
+		orderItemEntity.setOrderEntity(orderEntity);
+		orderItemEntity.setProductEntity(productEntity);
 		orderItemRepository.save(orderItemEntity);
 
 		// When Add New Order Item Then Update Total Price Of Order
@@ -89,7 +91,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
 		// Update InStock Of product
 		productEntity.setInStock(inStockNew);
-		productService.updateProduct(generateMapper.productEntityToProductDto(productEntity));
+		productService.updateProduct(productMapper.productEntityToProductDto(productEntity));
 
 		return true;
 	}
@@ -117,33 +119,36 @@ public class OrderItemServiceImpl implements OrderItemService {
 				orderDto.setId(orderItemEntityUpdate.getOrderEntity().getId());
 				orderService.updateOrder(orderDto);
 			}
-			
+
 			if (orderItemDto.getQuantity() >= 0) {
-				ProductEntity productEntity = productRepository.findOneById(orderItemEntityUpdate.getProductEntity().getId());
+				ProductEntity productEntity = productRepository
+						.findOneById(orderItemEntityUpdate.getProductEntity().getId());
 				// When Update Order Item Then Update InStock Of product
 				int inStockNew = 0;
-				if(orderItemEntityUpdate.getQuantity() < orderItemDto.getQuantity()) {
-					//increase quantity
-					inStockNew = productEntity.getInStock() - ( orderItemDto.getQuantity() - orderItemEntityUpdate.getQuantity());
-					flagAutoCaculateInStock= true;
+				if (orderItemEntityUpdate.getQuantity() < orderItemDto.getQuantity()) {
+					// increase quantity
+					inStockNew = productEntity.getInStock()
+							- (orderItemDto.getQuantity() - orderItemEntityUpdate.getQuantity());
+					flagAutoCaculateInStock = true;
 				}
-				
-				if(orderItemEntityUpdate.getQuantity() > orderItemDto.getQuantity()) {
-					//decrease quantity
-					inStockNew = productEntity.getInStock() + ( orderItemDto.getQuantity() - orderItemEntityUpdate.getQuantity());
-					flagAutoCaculateInStock= true;
+
+				if (orderItemEntityUpdate.getQuantity() > orderItemDto.getQuantity()) {
+					// decrease quantity
+					inStockNew = productEntity.getInStock()
+							+ (orderItemDto.getQuantity() - orderItemEntityUpdate.getQuantity());
+					flagAutoCaculateInStock = true;
 				}
-				
-				if(flagAutoCaculateInStock) {
-					//When change in quantity then update in stock of Product
+
+				if (flagAutoCaculateInStock) {
+					// When change in quantity then update in stock of Product
 					productEntity.setInStock(inStockNew);
-					productService.updateProduct(generateMapper.productEntityToProductDto(productEntity));
+					productService.updateProduct(productMapper.productEntityToProductDto(productEntity));
 					orderItemEntityUpdate.setQuantity(orderItemDto.getQuantity());
 				}
 			}
-			
+
 			orderItemRepository.save(orderItemEntityUpdate);
-			
+
 			return true;
 		} else {
 			throw new OrderException("OrderItem Not Found!");
@@ -175,7 +180,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
 		// When Delete Order Item Thne Update InStock Of product
 		productEntity.setInStock(inStockNew);
-		productService.updateProduct(generateMapper.productEntityToProductDto(productEntity));
+		productService.updateProduct(productMapper.productEntityToProductDto(productEntity));
 
 		return true;
 	}

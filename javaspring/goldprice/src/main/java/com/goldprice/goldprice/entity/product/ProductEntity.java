@@ -4,10 +4,9 @@ import java.math.BigDecimal;
 
 import com.goldprice.goldprice.entity.BaseEntity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,16 +16,16 @@ public class ProductEntity extends BaseEntity {
 	private String description;
 	private int weight;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "purity_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "purity_id")
 	private ProductPurityEntity productPurityEntity;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "type_id")
 	private ProductTypeEntity productTypeEntity;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "material_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "material_id")
 	private ProductMaterialEntity productMaterialEntity;
 
 	private BigDecimal price;
