@@ -8,8 +8,8 @@ const registerApi = (serviceCall, firstName, lastName, username, password, addre
     return axios.post("register", {serviceCall, firstName, lastName, username, password, address, phoneNumber, birthday});
 }
 
-const productApi = (serviceCall, productName, description, weight, purity, price, inStock, imageUrl) => {
-    return axios.post("product", {serviceCall, productName, description, weight, purity, price, inStock, imageUrl});
+const productApi = (serviceCall, token, productName, description, weight, purity, price, inStock, imageUrl) => {
+    return axios.post("product",{headers:{ 'Authorization': `Bearer ${token}`}}, {serviceCall, productName, description, weight, purity, price, inStock, imageUrl});
 }
 
 const goldPriceApi = () => {

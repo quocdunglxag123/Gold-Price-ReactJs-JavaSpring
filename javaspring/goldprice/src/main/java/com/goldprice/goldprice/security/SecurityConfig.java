@@ -36,7 +36,7 @@ public class SecurityConfig {
 		return http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(
 						auth -> auth.requestMatchers("/**")
-								.permitAll().requestMatchers("/userinfo").authenticated())
+								.permitAll().requestMatchers("/product").authenticated())
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider())
 				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class).build();

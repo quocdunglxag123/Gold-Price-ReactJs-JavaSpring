@@ -4,6 +4,15 @@ const instance = axios.create({
     baseURL: "http://localhost:8089/"
 })
 
+instance.interceptors.request.use(
+    (config) => {
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
 instance.interceptors.response.use(function(response) {
     return response.data? response.data : {statusCode : response.statusText};
 },function(error){

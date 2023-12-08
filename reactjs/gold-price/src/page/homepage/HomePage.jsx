@@ -14,7 +14,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   const init = async () => {
-      let res = await productApi('getAll');
+    let res = await productApi('getAll');
       if (res.status === '200' && res.data != null) {
         setProductInfo(res.data)
       } else {
