@@ -24,6 +24,11 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
+    const cookies = new Cookies();
+    cookies.remove('accessToken');
+    cookies.remove('refreshToken');
+    cookies.remove('lastName');
+    
     if (!email || !password) {
       toast.error("Email/Password is required");
     }
@@ -32,7 +37,6 @@ const Login = () => {
     setLoaingLogin(false);
 
     if (res.status === '200' && res.data != null) {
-      const cookies = new Cookies();
       cookies.set('refreshToken', res.data.tokenDto.refreshToken , { path: '/', httpOnly: true, sameSite: 'lax' });
       cookies.set('accessToken', res.data.tokenDto.accessToken , { path: '/' });
       cookies.set('lastName', res.data.userInfoDto.lastName , { path: '/' });
