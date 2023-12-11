@@ -37,7 +37,7 @@ const Login = () => {
     setLoaingLogin(false);
 
     if (res.status === '200' && res.data != null) {
-      cookies.set('refreshToken', res.data.tokenDto.refreshToken , { path: '/', httpOnly: true, sameSite: 'lax' });
+      cookies.set('refreshToken', res.data.tokenDto.refreshToken , { path: '/' });
       cookies.set('accessToken', res.data.tokenDto.accessToken , { path: '/' });
       cookies.set('lastName', res.data.userInfoDto.lastName , { path: '/' });
       navigate("/homepage");
