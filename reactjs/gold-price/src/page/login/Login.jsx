@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Login.css';
 import { loginApi } from "../../services/ApiService";
-import { toast } from 'react-toastify';
+import {ToastContainer,toast} from 'react-toastify'
 import { useNavigate, Link, Outlet  } from "react-router-dom"
 import {
   MDBBtn,
@@ -17,14 +17,28 @@ import {
 import Cookies from 'universal-cookie';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const cookies = new Cookies();
+  const rememberAccountFromCookies = cookies.get('rememberAccount') || false;
+  const emailFromCookies = cookies.get('email') || "";
+  const passwordFromCookies = cookies.get('password') || "";
+  const refreshTokenFromCookies = cookies.get('refreshToken') || "";
+  const accessTokenFromCookies = cookies.get('accessToken') || "";
+
+  const [email, setEmail] = useState(emailFromCookies);
+  const [password, setPassword] = useState(passwordFromCookies);
+  const [rememberAccount, setRememberAccount] = useState(rememberAccountFromCookies);
   const [loadingLogin, setLoaingLogin] = useState(false);
+  
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    if(refreshTokenFromCookies || accessTokenFromCookies){
+      navigate("/homepage");
+    }
+  },[navigate,refreshTokenFromCookies,accessTokenFromCookies])
+  
   const handleLogin = async (event) => {
     event.preventDefault()
-    const cookies = new Cookies();
     cookies.remove('accessToken');
     cookies.remove('refreshToken');
     cookies.remove('lastName');
@@ -37,6 +51,12 @@ const Login = () => {
     setLoaingLogin(false);
 
     if (res.status === '200' && res.data != null) {
+      if(rememberAccount){
+        cookies.set('email', email, { path: '/' });
+        cookies.set('password', password, { path: '/' });
+        cookies.set('rememberAccount', true, { path: '/' });
+        //cookies.set('password', password, { path: '/', httpOnly: true, sameSite: 'lax' });
+      }
       cookies.set('refreshToken', res.data.tokenDto.refreshToken , { path: '/' });
       cookies.set('accessToken', res.data.tokenDto.accessToken , { path: '/' });
       cookies.set('lastName', res.data.userInfoDto.lastName , { path: '/' });
@@ -74,12 +94,12 @@ const Login = () => {
           <MDBCard className='my-5 bg-glass'>
             <MDBCardBody className='p-5'>
 
-              <MDBInput wrapperClass='mb-4' onChange={(event) => setEmail(event.target.value)} name='email' label='Email' id='form3' type='email' />
+              <MDBInput wrapperClass='mb-4'  value={email}  onChange={(event) => setEmail(event.target.value)} name='email' label='Email' id='form3' type='email' />
 
-              <MDBInput wrapperClass='mb-4' onChange={(event) => setPassword(event.target.value)} name='password' label='Password' id='form4' type='password' />
+              <MDBInput wrapperClass='mb-4'  value={password}  onChange={(event) => setPassword(event.target.value)} name='password' label='Password' id='form4' type='password' />
 
               <div className='d-flex mb-4'>
-                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember Account' />
+                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember Account' checked={rememberAccount} onChange={() => setRememberAccount(!rememberAccount)} />
               </div>
 
               <MDBBtn className='w-100 mb-4' size='md' disabled={(email && password) ? false : true} onClick={handleLogin}>
@@ -96,6 +116,8 @@ const Login = () => {
 
       </MDBRow>
       <Outlet/>
+      <ToastContainer />
+
     </MDBContainer>
   );
 }

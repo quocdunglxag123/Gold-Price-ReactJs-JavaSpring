@@ -15,7 +15,7 @@ const refreshAndRetry = async (error) => {
   try {
     const newRestoken = await instance.post("refreshToken", { refreshToken });
 
-    if(newRestoken.status !== '400'){
+    if(newRestoken.status === '200'){
         //Token Refresh Success
         const newAccessToken = newRestoken.data.tokenDto.accessToken;
         cookiesToken.set("accessToken", newAccessToken, { path: "/" });
@@ -29,7 +29,7 @@ const refreshAndRetry = async (error) => {
         window.location.href = "/login";
     }
   } catch (refreshError) {
-    console.error("Error refreshing token:", refreshError);
+    window.alert("Error refreshing token:", refreshError);
     throw error; // Throw the original error if refresh token fails
   }
 };
