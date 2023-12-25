@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 const Product = () => {
   const navigate = useNavigate();
   const globalData = useSelector((state) => state.theStore.value);
-  
   useEffect(() => {
     if (!globalData) {
       navigate("/homepage");
@@ -17,7 +16,7 @@ const Product = () => {
   });
   return (
     <div className="body">
-      <div>
+      {/* <div>
         <h5>Filter:</h5> 
           <div className="d-flex">
             <div>
@@ -58,12 +57,12 @@ const Product = () => {
             </div>
           </div>
 
-      </div>
+      </div> */}
       <div className="products d-flex">
         {globalData && (
           <div className="products">
             {globalData.map((product) => (
-              <ProductCard key={product.id} data={product} />
+                <ProductCard key={product.id} data={product} />
             ))}
           </div>
         )}

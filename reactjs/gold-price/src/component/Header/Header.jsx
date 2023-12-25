@@ -12,16 +12,15 @@ import Cookies from 'universal-cookie';
 const Header = () => {
     const cookies = new Cookies();
     const [lastName] = useState(cookies.get("lastName"));
-    const [showSearch, setShowSearch] = useState(false);  // Thêm state showSearch
+    const [showSearch, setShowSearch] = useState(false);  //is show search element
     const location = useLocation();
     
     useEffect(() => {
-        // Xác định nếu trang hiện tại là "Product" thì hiển thị khung tìm kiếm
+        // If page is product then show search element
         setShowSearch(location.pathname.includes('/product'));
     }, [location.pathname]);
 
-    const handleLogout = async (event) => {
-        const cookies = new Cookies();
+    const handleLogout =  () => {
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
     }

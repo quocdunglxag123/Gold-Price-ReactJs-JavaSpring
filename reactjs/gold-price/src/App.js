@@ -25,6 +25,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProductDetail from './page/product-detail/ProductDetail';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
           <Route path="product" element={<Product />}>
           </Route>
           <Route path="goldprice" element={<GoldPrice />}>
+          </Route>
+          <Route path="productDetail" element={<ProductDetail />}>
+            <Route path=':productId' element={<ProductDetail />} />
           </Route>
           
         </Route>

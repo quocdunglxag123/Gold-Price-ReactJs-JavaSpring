@@ -37,8 +37,7 @@ const refreshAndRetry = async (error) => {
 instance.interceptors.request.use(
   function (config) {
     const token = cookiesToken.get("accessToken");
-
-    if (token && config.url !== "refreshToken") {
+    if (token && config.url !== "refreshToken" && !config.url.includes("https://mihong.vn/api/v1")) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
