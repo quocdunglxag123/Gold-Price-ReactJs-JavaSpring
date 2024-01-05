@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.goldprice.goldprice.dto.DataResponse;
 import com.goldprice.goldprice.dto.product.ProductDto;
+import com.goldprice.goldprice.dto.product.ProductImgDto;
 import com.goldprice.goldprice.dto.product.ProductMaterialDto;
 import com.goldprice.goldprice.dto.product.ProductPurityDto;
 import com.goldprice.goldprice.dto.product.ProductTypeDto;
+import com.goldprice.goldprice.service.product.ProductImgService;
 import com.goldprice.goldprice.service.product.ProductMaterialService;
 import com.goldprice.goldprice.service.product.ProductPurityService;
 import com.goldprice.goldprice.service.product.ProductService;
@@ -28,9 +30,11 @@ public class ProductController {
 	private ProductPurityService productPurityService;
 	@Autowired
 	private ProductMaterialService productMaterialService;
+	@Autowired
+	private ProductImgService productImgService;
 
 	@PostMapping("/product")
-	//@PreAuthorize("hasAuthority('customer')")
+	@PreAuthorize("hasAuthority('customer')")
 	public DataResponse product(@RequestBody ProductDto productDto) {
 		if (productDto.getServiceCall().equals("add")) {
 			// Case: Add Product By productDto property
@@ -116,6 +120,27 @@ public class ProductController {
 			return new DataResponse(productMaterialService.deleteProductMaterial(productMaterialDto));
 		}
 
+		return new DataResponse("500", "Method Not Found");
+	}
+	
+	@PostMapping("/productImg")
+	public DataResponse productImg(@RequestBody ProductImgDto productImgDto) {
+		if (productImgDto.getServiceCall().equals("add")) {
+			// Case: Add Product Img By ProductImgDto property
+			return new DataResponse(productImgService.addProductImg(productImgDto));
+		} else if (productImgDto.getServiceCall().equals("get")) {
+			// Case: Get One Product Img By ProductImgDto property
+			return new DataResponse(productImgService.getProductImg(productImgDto));
+		} else if (productImgDto.getServiceCall().equals("getAll")) {
+			// Case: Get All Product Img
+			return new DataResponse(productImgService.getAllProductImg());
+		} else if (productImgDto.getServiceCall().equals("update")) {
+			// Case: Update Product Img By ProductImgDto property
+			return new DataResponse(productImgService.updateProductImg(productImgDto));
+		} else if (productImgDto.getServiceCall().equals("delete")) {
+			// Case: Delete Product Img By ProductImgDto property
+			return new DataResponse(productImgService.deleteProductImg(productImgDto));
+		}
 		return new DataResponse("500", "Method Not Found");
 	}
 

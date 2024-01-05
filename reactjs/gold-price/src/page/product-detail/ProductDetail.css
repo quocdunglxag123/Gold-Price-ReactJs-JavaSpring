@@ -13,12 +13,13 @@
 }
 .productDisplayImgList img{
     height: 163px;
+    background-color: rgb(126,3,8);
+    cursor: pointer;
 }
 .productDisplayMainImg{
     width: 586px;
     height: 700px;
 }
-
 .productDisplayRight{
     margin: 0px 70px;
     display: flex;

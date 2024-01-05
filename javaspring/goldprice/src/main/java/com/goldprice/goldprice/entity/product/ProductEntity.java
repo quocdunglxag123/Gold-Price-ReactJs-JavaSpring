@@ -1,12 +1,15 @@
 package com.goldprice.goldprice.entity.product;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.goldprice.goldprice.entity.BaseEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,17 +31,19 @@ public class ProductEntity extends BaseEntity {
 	@JoinColumn(name = "material_id")
 	private ProductMaterialEntity productMaterialEntity;
 
+	@OneToMany(mappedBy = "productEntity", cascade = CascadeType.ALL)
+	private List<ProductImgEntity> productImgEntities;
+
 	private BigDecimal price;
 	private int inStock;
-	private String imageUrl;
 
 	public ProductEntity() {
 		super();
 	}
 
 	public ProductEntity(String name, String description, int weight, ProductPurityEntity productPurityEntity,
-			ProductTypeEntity productTypeEntity, ProductMaterialEntity productMaterialEntity, BigDecimal price,
-			int inStock, String imageUrl) {
+			ProductTypeEntity productTypeEntity, ProductMaterialEntity productMaterialEntity,
+			List<ProductImgEntity> productImgEntities, BigDecimal price, int inStock) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -46,9 +51,9 @@ public class ProductEntity extends BaseEntity {
 		this.productPurityEntity = productPurityEntity;
 		this.productTypeEntity = productTypeEntity;
 		this.productMaterialEntity = productMaterialEntity;
+		this.productImgEntities = productImgEntities;
 		this.price = price;
 		this.inStock = inStock;
-		this.imageUrl = imageUrl;
 	}
 
 	public String getName() {
@@ -115,12 +120,12 @@ public class ProductEntity extends BaseEntity {
 		this.inStock = inStock;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public List<ProductImgEntity> getProductImgEntities() {
+		return productImgEntities;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setProductImgEntities(List<ProductImgEntity> productImgEntities) {
+		this.productImgEntities = productImgEntities;
 	}
 
 }

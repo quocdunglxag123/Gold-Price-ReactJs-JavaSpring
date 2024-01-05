@@ -1,6 +1,7 @@
 package com.goldprice.goldprice.dto.product;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.goldprice.goldprice.dto.BaseDto;
 
@@ -13,7 +14,7 @@ public class ProductDto extends BaseDto {
 	private ProductMaterialDto productMaterialDto;
 	private BigDecimal price;
 	private int inStock;
-	private String imageUrl;
+	private List<ProductImgDto> productImgDtos;
 
 	public ProductDto() {
 		super();
@@ -21,7 +22,7 @@ public class ProductDto extends BaseDto {
 
 	public ProductDto(String name, String description, int weight, ProductPurityDto productPurityDto,
 			ProductTypeDto productTypeDto, ProductMaterialDto productMaterialDto, BigDecimal price, int inStock,
-			String imageUrl) {
+			List<ProductImgDto> productImgDtos) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -31,7 +32,7 @@ public class ProductDto extends BaseDto {
 		this.productMaterialDto = productMaterialDto;
 		this.price = price;
 		this.inStock = inStock;
-		this.imageUrl = imageUrl;
+		this.productImgDtos = productImgDtos;
 	}
 
 	public String getName() {
@@ -98,12 +99,12 @@ public class ProductDto extends BaseDto {
 		this.inStock = inStock;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public List<ProductImgDto> getProductImgDtos() {
+		return productImgDtos;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setProductImgDtos(List<ProductImgDto> productImgDtos) {
+		this.productImgDtos = productImgDtos;
 	}
 
 }

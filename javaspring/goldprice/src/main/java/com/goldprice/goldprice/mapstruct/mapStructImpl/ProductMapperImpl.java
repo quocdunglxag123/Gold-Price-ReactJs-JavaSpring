@@ -39,7 +39,9 @@ public class ProductMapperImpl implements ProductMapper {
 		productDto.setWeight(productEntity.getWeight());
 		productDto.setPrice(productEntity.getPrice());
 		productDto.setInStock(productEntity.getInStock());
-		productDto.setImageUrl(productEntity.getImageUrl());
+		productDto.setProductImgDtos(
+				generateMapper.listProductImgEntityToListProductImgDto(productEntity.getProductImgEntities())
+		);
 
 		return productDto;
 	}
@@ -80,7 +82,9 @@ public class ProductMapperImpl implements ProductMapper {
 		productEntity.setWeight(productDto.getWeight());
 		productEntity.setPrice(productDto.getPrice());
 		productEntity.setInStock(productDto.getInStock());
-		productEntity.setImageUrl(productDto.getImageUrl());
+		productEntity.setProductImgEntities(
+				generateMapper.listProductImgDtoToListProductImgEntity(productDto.getProductImgDtos())
+		);
 
 		return productEntity;
 	}

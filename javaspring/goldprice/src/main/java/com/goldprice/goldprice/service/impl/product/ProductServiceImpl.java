@@ -1,17 +1,23 @@
 package com.goldprice.goldprice.service.impl.product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.goldprice.goldprice.dto.product.ProductDto;
+import com.goldprice.goldprice.dto.product.ProductImgDto;
 import com.goldprice.goldprice.entity.product.ProductEntity;
+import com.goldprice.goldprice.entity.product.ProductImgEntity;
 import com.goldprice.goldprice.entity.product.ProductMaterialEntity;
 import com.goldprice.goldprice.entity.product.ProductPurityEntity;
 import com.goldprice.goldprice.entity.product.ProductTypeEntity;
 import com.goldprice.goldprice.exception.ProductException;
 import com.goldprice.goldprice.mapstruct.ProductMapper;
+import com.goldprice.goldprice.repository.product.ProductImgRepository;
 import com.goldprice.goldprice.repository.product.ProductMaterialRepository;
 import com.goldprice.goldprice.repository.product.ProductPurityRepository;
 import com.goldprice.goldprice.repository.product.ProductRepository;
@@ -25,6 +31,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 	@Autowired
 	private ProductTypeRepository productTypeRepository;
+	@Autowired
+	private ProductImgRepository productImgRepository;
 	@Autowired
 	private ProductMaterialRepository productMaterialRepository;
 	@Autowired
@@ -92,8 +100,25 @@ public class ProductServiceImpl implements ProductService {
 				productEntityUpdate.setName(productDto.getName());
 			}
 
-			if (productDto.getImageUrl() != null) {
-				productEntityUpdate.setImageUrl(productDto.getImageUrl());
+			if (productDto.getProductImgDtos().size() > 0) {
+				List<ProductImgEntity> productImgEntities = new ArrayList<ProductImgEntity>();
+				for (ProductImgDto productImgDto : productDto.getProductImgDtos()) {
+					ProductImgEntity productImgEntity = new ProductImgEntity();
+					Long id = productImgDto.getId();
+					if (id != null && productImgDto.getId() != 0 ) {
+						productImgEntity = productImgRepository.findOneById(productImgDto.getId());
+					} else if (productImgDto.getName() != "" && productImgDto.getName() != null) {
+						productImgEntity = productImgRepository.findOneByName(productImgDto.getName());
+					} else {
+						throw new ProductException("Image Not Found!");
+					}
+
+					if (productImgEntities != null) {
+						productImgEntities.add(productImgEntity);
+					}
+				}
+
+				productEntityUpdate.setProductImgEntities(productImgEntities);
 			}
 			if (productDto.getInStock() >= 0) {
 				productEntityUpdate.setInStock(productDto.getInStock());

@@ -1,7 +1,6 @@
 import React from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
-
 import {
   MDBContainer,
   MDBRow,
@@ -11,31 +10,34 @@ import {
   MDBCardImage,
   MDBBtn,
 } from "mdb-react-ui-kit";
+import {PRODUCT_IMG_INFORMATION, PRODUCT_PURITY_INFORMATION} from "../../config/configName";
 
 const ProductCard = (props) => {
   const product = props.data;
-
+  const imageSource = product[PRODUCT_IMG_INFORMATION][0]
+  ? product[PRODUCT_IMG_INFORMATION][0].url
+  : "ErrorImage.png";
   return (
     <MDBContainer className="cardProduct">
-      <MDBRow>
+      <MDBRow className= "h-100">
         <MDBCol>
-          <MDBCard className="text-black">
-            <Link to={`/productDetail/${props.data.id}`}>
+          <MDBCard className="text-black h-100">
+            <Link to={`/productDetail/${product.id}`}>
               <MDBCardImage
                 className="cardImage"
-                src={require(`../../shared/image/${product.imageUrl}`)}
+                src={require(`../../shared/image/${imageSource}`)}
                 position="top"
                 alt="Apple Computer"
               />
             </Link>
-            <MDBCardBody>
+            {/* <MDBCardBody>
               <div className="text-center">
                 <h5>{product.name}</h5>
                 <p className="text-muted m-0">{product.description}</p>
               </div>
               <div>
                 <div className="d-flex justify-content-between">
-                  <span>Purity: {product.productPurityDto.name}</span>
+                  <span>Purity: {product[PRODUCT_PURITY_INFORMATION].name}</span>
                   <span>weight: {product.weight} chỉ</span>
                 </div>
               </div>
@@ -47,7 +49,7 @@ const ProductCard = (props) => {
                   Add To Cart
                 </MDBBtn>
               </div>
-            </MDBCardBody>
+            </MDBCardBody> */}
           </MDBCard>
         </MDBCol>
       </MDBRow>
