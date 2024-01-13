@@ -34,7 +34,7 @@ public class ProductController {
 	private ProductImgService productImgService;
 
 	@PostMapping("/product")
-	@PreAuthorize("hasAuthority('customer')")
+	//@PreAuthorize("hasAuthority('customer')")
 	public DataResponse product(@RequestBody ProductDto productDto) {
 		if (productDto.getServiceCall().equals("add")) {
 			// Case: Add Product By productDto property

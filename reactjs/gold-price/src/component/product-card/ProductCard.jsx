@@ -8,9 +8,8 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardImage,
-  MDBBtn,
 } from "mdb-react-ui-kit";
-import {PRODUCT_IMG_INFORMATION, PRODUCT_PURITY_INFORMATION} from "../../config/configName";
+import {PRODUCT_IMG_INFORMATION} from "../../config/configName";
 
 const ProductCard = (props) => {
   const product = props.data;
@@ -21,35 +20,21 @@ const ProductCard = (props) => {
     <MDBContainer className="cardProduct">
       <MDBRow className= "h-100">
         <MDBCol>
-          <MDBCard className="text-black h-100">
-            <Link to={`/productDetail/${product.id}`}>
+          <MDBCard className="hoverImageZoom border-0 h-100">
+            <Link className="textProduct" to={`/productDetail/${product.id}`}>
               <MDBCardImage
                 className="cardImage"
                 src={require(`../../shared/image/${imageSource}`)}
                 position="top"
                 alt="Apple Computer"
               />
-            </Link>
-            {/* <MDBCardBody>
+            <MDBCardBody>
               <div className="text-center">
                 <h5>{product.name}</h5>
-                <p className="text-muted m-0">{product.description}</p>
+                <h5>{product.price} VND</h5>
               </div>
-              <div>
-                <div className="d-flex justify-content-between">
-                  <span>Purity: {product[PRODUCT_PURITY_INFORMATION].name}</span>
-                  <span>weight: {product.weight} chỉ</span>
-                </div>
-              </div>
-              <div className="d-flex justify-content-between">
-                <MDBBtn rounded className="px-1 mx-0" color="success">
-                  Buy Now
-                </MDBBtn>
-                <MDBBtn rounded className="px-1 mx-0" color="secondary">
-                  Add To Cart
-                </MDBBtn>
-              </div>
-            </MDBCardBody> */}
+            </MDBCardBody>
+            </Link>
           </MDBCard>
         </MDBCol>
       </MDBRow>

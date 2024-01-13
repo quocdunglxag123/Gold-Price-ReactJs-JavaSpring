@@ -16,7 +16,20 @@ const HomePage = () => {
   const init = useCallback(async () => {
     let res = await productApi("getAll");
     if (res.status === "200" && res.data != null) {
-      setProductInfo(res.data);
+      let goldPrice = res.data;    
+      // Create Formart ","
+      const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      };
+
+      // Create Copy Array to format buyingPrice and sellingPrice with "," (1000-> 1,000)
+      const formattedGoldPrice = goldPrice.map((item) => ({
+        ...item,
+        price: item.price ? formatNumber(item.price) : 0
+      }));
+
+      // Update state gold data
+      setProductInfo(formattedGoldPrice);
     } else {
       window.alert(res.errMsg);
       await navigate("/login");

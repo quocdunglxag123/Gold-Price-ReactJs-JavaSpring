@@ -19,12 +19,7 @@ const GoldPrice = () => {
   const [dataLine1, setDataLine1] = useState("");
   const [dataLine2, setDataLine2] = useState("");
   const [labels, setLabels] = useState("");
-
-  // const dataLine1 = [10, 20, 30, 40, 50];
-  // const dataLine2 = [5, 15, 25, 35, 45];
-  // const labels = ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'];
-
-
+  
   //Init Function
   const init = async ()  => {
     //Call Api GoldPrice Mi Hong

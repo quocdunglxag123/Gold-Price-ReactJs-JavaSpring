@@ -55,7 +55,10 @@ const Login = () => {
         cookies.set('email', email, { path: '/' });
         cookies.set('password', password, { path: '/' });
         cookies.set('rememberAccount', true, { path: '/' });
-        //cookies.set('password', password, { path: '/', httpOnly: true, sameSite: 'lax' });
+      }else{
+        cookies.remove('email');
+        cookies.remove('password');
+        cookies.remove('rememberAccount');
       }
       cookies.set('refreshToken', res.data.tokenDto.refreshToken , { path: '/' });
       cookies.set('accessToken', res.data.tokenDto.accessToken , { path: '/' });

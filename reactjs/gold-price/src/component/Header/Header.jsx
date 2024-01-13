@@ -23,10 +23,7 @@ const Header = () => {
     const handleLogout =  () => {
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
-        cookies.remove('email');
-        cookies.remove('password');
         cookies.remove('lastName');
-        cookies.remove('rememberAccount');
     }
     
     return (

@@ -7,4 +7,31 @@
 }
 .cardImage{
   height: 250px;
+  background-color: rgb(88,2,2);
+}
+.textProduct{
+  text-decoration: none;
+  color: yellow;
+}
+.textProduct:hover{
+  color: yellow;
+}
+.hoverImageZoom{
+  background-color: rgb(88,2,2) !important;
+}
+.hoverImageZoom img{
+  transform:scale(0.9);
+  -moz-transform:scale(0.9);
+  -o-transform:scale(0.9); 
+  transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  }
+.hoverImageZoom img:hover{
+  transform:scale(1.1);
+  -moz-transform:scale(1.1);
+  -o-transform:scale(1.1);
+  box-shadow:0px 0px 30px gray;
+  -webkit-box-shadow:0px 0px 30px gray;
+  -moz-box-shadow:0px 0px 30px gray;
 }
