@@ -1,10 +1,8 @@
 import React, { useEffect, useCallback, useState, Fragment } from "react";
 import "./ProductDetail.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faStarHalfStroke } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { PRODUCT_IMG_INFORMATION } from "../../config/configName";
+import { PRODUCT_IMG_INFORMATION, PRODUCT_PURITY_INFORMATION, PRODUCT_TYPE_INFORMATION, PRODUCT_MATERIAL_INFORMATION  } from "../../config/configName";
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -44,10 +42,11 @@ const ProductDetail = () => {
     } else {
       init();
     }
-  }, [init, globalData, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
+  //Change Img Function
   const changeMainImg = (imgId) => {
-    console.log("changeMainImg");
     const newImageMainSource = product[PRODUCT_IMG_INFORMATION].find(
       (img) => img.id === Number(imgId)
     );
@@ -75,35 +74,28 @@ const ProductDetail = () => {
             src={require(`../../shared/image/${imageMainSource ? imageMainSource.url : "ErrorImage.png"}`)}
             alt={imageMainSource ? imageMainSource.name : "ErrorImage"}
           />
+          <div className="text-center">
+            <h1>Price: {product.price} VND</h1>
+            <button type="button" className=" buttonBuyProductDetail btn btn-warning btn-lg">BUY NOW</button>
+            <button type="button" className="btn btn-secondary btn-lg">ADD TO CART</button>
+          </div>
         </div>
       </div>
       <div className="productDisplayRight">
         <h1>{product.name}</h1>
-        <div className="productDisplayRightStar">
-          <FontAwesomeIcon icon={faStar} style={{ color: "#fff700" }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: "#fff700" }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: "#fff700" }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: "#fff700" }} />
-          <FontAwesomeIcon
-            icon={faStarHalfStroke}
-            style={{ color: "#fff700" }}
-          />
-        </div>
-        <div className="productDisplayRightPrice">
+        {/* <div className="productDisplayRightPrice">
           <div className="productDisplayRightPrice">${product.price}</div>
+        </div> PRODUCT_PURITY_INFORMATION,PRODUCT_TYPE_INFORMATION,PRODUCT_MATERIAL_INFORMATION*/}
+        <div className="productDisplayRightDescription w-100">
+          <h2>Product Detail Information:</h2>
+          <h5>
+          <div>Purity: {product[PRODUCT_PURITY_INFORMATION].name}</div>
+          <div>Type: {product[PRODUCT_TYPE_INFORMATION].name}</div>
+          <div>Material: {product[PRODUCT_MATERIAL_INFORMATION].name}</div>
+          <div>Description: {product.description}</div>
+          </h5>
         </div>
-        <div className="productDisplayRightDescription">
-          {product.description}
-        </div>
-        <div>
-          <h1>Select Size</h1>
-          <div className="productDisplayRightSize">
-            <div>S</div>
-            <div>M</div>
-            <div>L</div>
-          </div>
-        </div>
-        <button>ADD TO CART</button>
+        {/* <button>ADD TO CART</button>
         <p className="productDisplayRightCategory">
           <span>Category :</span>
           {product.productPurityDto.name}, {product.productMaterialDto.name}
@@ -111,7 +103,7 @@ const ProductDetail = () => {
         <p className="productDisplayRightCategory">
           <span>Tags :</span>
           {product.productTypeDto.name}
-        </p>
+        </p> */}
       </div>
       </Fragment>
     )}

@@ -16,3 +16,6 @@
     box-shadow: none  !important;
     text-transform: none !important;
 }
+.searchIcon{
+    cursor: pointer;
+}

@@ -64,6 +64,23 @@ public class ProductServiceImpl implements ProductService {
 	public Object getAllProducts() {
 		return productMapper.listProductEntityToListProductDto(productRepository.findAll());
 	}
+	
+	/**
+	 * Search Products
+	 * 
+	 * @return productDto Object contains  information about products in the
+	 *         database
+	 */
+	@Override
+	public Object searchProduct(ProductDto productDto) {
+		List<ProductEntity> listProductEntity = new ArrayList<ProductEntity>();
+		if(productDto.getName() == "" || productDto.getName() == null ) {
+			listProductEntity  = productRepository.findAll();
+		}else {
+			listProductEntity = productRepository.findByNameContaining(productDto.getName());
+		}
+		return productMapper.listProductEntityToListProductDto(listProductEntity);
+	}
 
 	/**
 	 * Add Product

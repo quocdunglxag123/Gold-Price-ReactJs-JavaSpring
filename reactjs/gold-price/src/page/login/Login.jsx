@@ -77,15 +77,12 @@ const Login = () => {
         <MDBCol md='6' className='text-center text-md-start d-flex flex-column justify-content-center'>
 
           <h1 className="my-5 display-3 fw-bold ls-tight px-3" style={{ color: 'hsl(218, 81%, 95%)' }}>
-            The best offer <br />
-            <span style={{ color: 'hsl(218, 81%, 75%)' }}>for your business</span>
+            Mi Hong <br />
+            <span style={{ color: 'hsl(218, 81%, 75%)' }}>Faith - Heart - Mind - Virtue</span>
           </h1>
 
           <p className='px-3' style={{ color: 'hsl(218, 81%, 85%)' }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-            quibusdam tempora at cupiditate quis eum maiores libero
-            veritatis? Dicta facilis sint aliquid ipsum atque?
+            The Mi Hong Gold Trading and Pawn Services Limited Company specializes in gold trading and pawn services. Mi Hong always places 'Reputation' as the top priority in business, striving continuously to be the first choice when customers have needs for gold transactions and shopping. In the realm of jewelry, we steadfastly uphold the 'Golden Trust' that customers have placed in Mi Hong over our 30 years of operation.
           </p>
 
         </MDBCol>
@@ -96,11 +93,10 @@ const Login = () => {
           <div id="radius-shape-2" className="position-absolute shadow-5-strong"></div>
           <MDBCard className='my-5 bg-glass'>
             <MDBCardBody className='p-5'>
-
-              <MDBInput wrapperClass='mb-4'  value={email}  onChange={(event) => setEmail(event.target.value)} name='email' label='Email' id='form3' type='email' />
-
-              <MDBInput wrapperClass='mb-4'  value={password}  onChange={(event) => setPassword(event.target.value)} name='password' label='Password' id='form4' type='password' />
-
+              <form>
+                <MDBInput wrapperClass='mb-4'  value={email}  onChange={(event) => setEmail(event.target.value)} name='email' label='Email' id='email' autoComplete="on" type='email' />
+                <MDBInput wrapperClass='mb-4'  value={password}  onChange={(event) => setPassword(event.target.value)} name='password' autoComplete='current-password' label='Password' id='password' type='password' />
+              </form>
               <div className='d-flex mb-4'>
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember Account' checked={rememberAccount} onChange={() => setRememberAccount(!rememberAccount)} />
               </div>

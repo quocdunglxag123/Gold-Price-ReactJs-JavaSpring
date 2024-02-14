@@ -7,6 +7,15 @@ import com.goldprice.goldprice.dto.product.ProductDto;
 @Service
 public interface ProductService {
 	/**
+	 * Search Product
+	 * 
+	 * @param productDto ProductDto contains information about a product to get
+	 * 
+	 * @return productDto Object contains information about a product in database
+	 */
+	Object searchProduct(ProductDto productDto);
+	
+	/**
 	 * Get Product
 	 * 
 	 * @param productDto ProductDto contains information about a product to get

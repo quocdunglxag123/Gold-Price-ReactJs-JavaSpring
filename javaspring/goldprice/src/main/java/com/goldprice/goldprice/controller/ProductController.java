@@ -1,7 +1,6 @@
 package com.goldprice.goldprice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,6 +38,9 @@ public class ProductController {
 		if (productDto.getServiceCall().equals("add")) {
 			// Case: Add Product By productDto property
 			return new DataResponse(productService.addProduct(productDto));
+		} else if (productDto.getServiceCall().equals("search")) {
+			// Case: search Product By productDto property
+			return new DataResponse(productService.searchProduct(productDto));
 		} else if (productDto.getServiceCall().equals("get")) {
 			// Case: Get One Product By productDto property
 			return new DataResponse(productService.getProduct(productDto));

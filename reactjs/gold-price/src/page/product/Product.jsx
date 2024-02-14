@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import './Product.css';
 import ProductCard from "../../component/product-card/ProductCard";
 import { useNavigate, Outlet  } from "react-router-dom"
-import Dropdown from 'react-bootstrap/Dropdown';
+// import Dropdown from 'react-bootstrap/Dropdown';
 
 import { useSelector } from "react-redux";
 
