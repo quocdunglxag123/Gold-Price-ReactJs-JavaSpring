@@ -1,65 +1,40 @@
 package com.goldprice.goldprice;
 
-import java.io.File;
-import java.util.Properties;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import jakarta.mail.Authenticator;
-import jakarta.mail.Message;
-import jakarta.mail.MessagingException;
-import jakarta.mail.Multipart;
-import jakarta.mail.PasswordAuthentication;
-import jakarta.mail.Session;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.AddressException;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeBodyPart;
-import jakarta.mail.internet.MimeMessage;
-import jakarta.mail.internet.MimeMultipart;
 
 public class test {
+	public static void main(String[] args) throws IOException {
+		List<Person> persons = new ArrayList<>();
 
-	public static void main(String[] args) throws MessagingException {
-	    Properties properties=new Properties();
-	    properties.put("mail.smtp.auth", "true");
-	    properties.put("mail.smtp.starttls.enable", "true");
-	    properties.put("mail.smtp.host", "smtp.gmail.com");
-	    properties.put("mail.smtp.port", "587");
+	    BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\quocd\\Downloads\\Book1.csv"));
+	 
+	    br.readLine(); // Not read Next Line
 
-		String fromEmailUserName = "tamxa61@gmail.com";
-		String fromEmailPassword = "czab tpok aapo gcus";
+	    String line = br.readLine(); //Read nextLine
+	    while (line != null && !line.isEmpty()) {
+	    	
+	    	//Check Line Is Empty Null
+	        String[] per = line.replace(""", "").split(",");
+	        //String[] perDetail = per[0].split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+		   	System.out.println(Arrays.asList(per).get(0));
 
-		Session session = Session.getInstance(properties, new Authenticator() {
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(fromEmailUserName, fromEmailPassword);
-			}
-		});
-
-		Message message = new MimeMessage(session);
-		try {
-			Multipart multipart = new MimeMultipart();
-
-			message.setFrom(new InternetAddress(fromEmailUserName));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress("quocdunglxag123@gmail.com"));
-			message.setSubject("Helloo Sub");
-
-			MimeBodyPart mimeBodyPart = new MimeBodyPart();
-			mimeBodyPart.setContent("Hello Content", "text/html; charset=utf-8");
-			multipart.addBodyPart(mimeBodyPart);
-
-			MimeBodyPart mimeBodyPartAttachFile = new MimeBodyPart();
-			mimeBodyPartAttachFile.attachFile(new File(
-					"D:\\Code\\Project\\Gold-Price-ReactJs-JavaSpring\\javaspring\\goldprice\\src\\main\\resources\\application.properties"));
-			multipart.addBodyPart(mimeBodyPartAttachFile);
-
-			message.setContent(multipart);
-
-			Transport.send(message);
-			System.out.println("Message Sent successfully");
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	        //Set To Person
+	        Person person = new Person();
+	        person.setFirst_name(per[0]);
+	        person.setLast_name(per[1]);
+	        person.setLicense_number(per[2]);
+	        person.setSite_number(Integer.parseInt(per[3]));
+	        
+	        persons.add(person);// Add Person To List
+	   
+	        line = br.readLine();//Read nextLine
+	    }        
+	    
 	}
 }
